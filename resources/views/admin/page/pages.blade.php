@@ -64,7 +64,6 @@
                     @endforeach
                 </td>
                 <td>
-                    Content
                     @foreach($item->content as $local => $content)
                         <div style="display: flex;">
                             <div style="padding: 5px;display: flex;align-items: center;background-color: #ddd;">{{$local}}</div>

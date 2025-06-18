@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\AdminPageController;
+use App\Http\Controllers\AdminPhotoController;
 use App\Http\Controllers\PageController;
 use App\Http\Middleware\AdminAuthMiddleware;
 use App\Http\Middleware\LocaleMiddleware;
@@ -27,6 +28,24 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/pages/show/{id}', [AdminPageController::class, 'show'])->name('admin.pages.show');
         Route::delete('/pages/delete/{id}', [AdminPageController::class, 'delete'])->name('admin.pages.delete');
         //-----------------------------------Page-end-------------------------------------------------------------------
+        //-----------------------------------Photo-begin----------------------------------------------------------------
+        Route::get('/photos', [AdminPhotoController::class, 'index'])->name('admin.photos');
+        Route::get('/photos/create', [AdminPhotoController::class, 'create'])->name('admin.photos.create');
+        Route::post('/photos/create', [AdminPhotoController::class, 'postCreate'])->name('admin.photos.postCreate');
+        Route::get('/photos/update/{id}', [AdminPhotoController::class, 'update'])->name('admin.photos.update');
+        Route::post('/photos/update/{id}', [AdminPhotoController::class, 'postUpdate'])->name('admin.photos.postUpdate');
+        Route::get('/photos/show/{id}', [AdminPhotoController::class, 'show'])->name('admin.photos.show');
+        Route::delete('/photos/delete/{id}', [AdminPhotoController::class, 'delete'])->name('admin.photos.delete');
+        //-----------------------------------Photo-end------------------------------------------------------------------
+        //-----------------------------------Main Menu-begin------------------------------------------------------------
+        Route::get('/main-menu', [AdminMenuController::class, 'index'])->name('admin.main_menu');
+        Route::get('/main-menu/create', [AdminMenuController::class, 'create'])->name('admin.main_menu.create');
+        Route::post('/main-menu/create', [AdminMenuController::class, 'postCreate'])->name('admin.main_menu.postCreate');
+        Route::get('/main-menu/update/{id}', [AdminMenuController::class, 'update'])->name('admin.main_menu.update');
+        Route::post('/main-menu/update/{id}', [AdminMenuController::class, 'postUpdate'])->name('admin.main_menu.postUpdate');
+        Route::delete('/main-menu/delete/{id}', [AdminMenuController::class, 'delete'])->name('admin.main_menu.delete');
+        //-----------------------------------Main Menu-end--------------------------------------------------------------
+
     });
 });
 
@@ -37,7 +56,7 @@ Route::group([
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', LocaleMiddleware::class],
 ], function () {
     Route::get('/', [PageController::class, 'home'])->name('home');
-    Route::get('/home', [PageController::class, 'home'])->name('homeros');
+    Route::get('/gallery', [PageController::class, 'gallery'])->name('gallery');
 
 
     Route::get('/{slug}/{subs?}', [PageController::class, 'page'])->name('page');

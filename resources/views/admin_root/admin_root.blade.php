@@ -13,6 +13,7 @@
 
 </head>
 <body>
+@include('admin_root.admin_header')
 @yield('content')
 
 @stack('body_js')

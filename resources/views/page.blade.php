@@ -1,5 +1,5 @@
 @extends('root.root')
-@section('title', __('Home'))
+@section('title', $page->slug)
 @section('content')
     <div style="width: 1024px;margin: 25px auto;">
         @if($page->image)
@@ -17,7 +17,7 @@
             <h3>{{$page->small_title[app()->getLocale()]}}</h3>
         @endif
         @if($page->content[app()->getLocale()])
-            <div style="white-space: pre-wrap">{{$page->content[app()->getLocale()]}}</div>
+            <div style="white-space: pre-wrap; text-align: justify">{{$page->content[app()->getLocale()]}}</div>
         @endif
         <div style="display: flex;flex-wrap: wrap;">
             @foreach($page->images ?? [] as $imageItem)

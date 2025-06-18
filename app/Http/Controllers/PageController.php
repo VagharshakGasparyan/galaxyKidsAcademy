@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -11,6 +12,11 @@ class PageController extends Controller
     {
 
         return view('home');
+    }
+    public function gallery(): \Illuminate\Contracts\View\View
+    {
+        $photos = Photo::where('enabled', true)->orderBy('created_at', 'desc')->get();
+        return view('gallery', compact('photos'));
     }
 
     public function page($locale, $slug, $subs = null): \Illuminate\Contracts\View\View

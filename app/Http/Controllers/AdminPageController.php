@@ -138,6 +138,8 @@ class AdminPageController extends Controller
         foreach ($request->get('old_images') ?? [] as $indexImage => $imageItem) {
             if (array_key_exists($indexImage, $old_images_checked)) {
                 $images[] = $imageItem;
+            }else{
+                Storage::disk('public')->delete($imageItem);
             }
         }
 //        dd($images);
@@ -146,6 +148,9 @@ class AdminPageController extends Controller
             $src_filePath = (new FService())->fileUpload($request->files->get('image'), 'page_images');
             $filePath = $src_filePath['filePath'];
             $image = $filePath;
+            if($page->image){
+                Storage::disk('public')->delete($page->image);
+            }
         }elseif ($request->has('old_image')){
             $image = $page->image;
         }elseif($page->image){
@@ -168,10 +173,14 @@ class AdminPageController extends Controller
         return back();
     }
 
-    public function show($id): \Illuminate\Contracts\View\View
+    public function show(Request $request, $id): \Illuminate\Contracts\View\View
     {
-
-        return view('admin.page.show_page');
+        $page = Page::findOrFail($id);
+        $lang = $request->get('lang') ?? app()->getLocale();
+        if (!app('laravellocalization')->checkLocaleInSupportedLocales($lang)) {
+            $lang = app()->getLocale();
+        }
+        return view('admin.page.show_page', compact('page', 'lang'));
     }
 
     public function delete($id): \Illuminate\Http\RedirectResponse

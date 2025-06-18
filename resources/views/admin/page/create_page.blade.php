@@ -8,7 +8,7 @@
             <div style="margin-right: 10px;">Choose language </div>
             <select name="lang">
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                    <option value="{{$localeCode}}">{{$properties['name']}}</option>
+                    <option value="{{$localeCode}}" @if(old('lang') == $localeCode) selected @endif>{{$properties['name']}}</option>
                 @endforeach
             </select>
         </div>
@@ -17,46 +17,46 @@
             <div style="color: red;">{{ $message }}</div>
         @enderror
         <hr style="width: 100%">
-        <label>Slug * (Page Link)</label>
-        <input type="text" name="slug" placeholder="Slug" required>
+        <label>Slug * (Page Link, can be path or path1/path2)</label>
+        <input type="text" name="slug" placeholder="Slug" required value="{{old('slug')}}">
         @error('slug')
         <div style="color: red;">{{ $message }}</div>
         @enderror
         <hr style="width: 100%">
         <label>Name * (need for Admin)</label>
-        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="name" placeholder="Name" required value="{{old('name')}}">
         @error('name')
         <div style="color: red;">{{ $message }}</div>
         @enderror
         <hr style="width: 100%">
         <label>Page Type</label>
         <select name="type">
-            <option value="page">Page</option>
+            <option value="page" @if(old('type') == 'page') selected @endif>Page</option>
         </select>
         @error('type')
         <div style="color: red;">{{ $message }}</div>
         @enderror
         <hr style="width: 100%">
         <label>Big Title</label>
-        <input type="text" name="big_title" placeholder="Big Title">
+        <input type="text" name="big_title" placeholder="Big Title" value="{{old('big_title')}}">
         @error('big_title')
         <div style="color: red;">{{ $message }}</div>
         @enderror
         <hr style="width: 100%">
         <label>Medium Title</label>
-        <input type="text" name="medium_title" placeholder="Medium Title">
+        <input type="text" name="medium_title" placeholder="Medium Title" value="{{old('medium_title')}}">
         @error('medium_title')
         <div style="color: red;">{{ $message }}</div>
         @enderror
         <hr style="width: 100%">
         <label>Small Title</label>
-        <input type="text" name="small_title" placeholder="Small Title">
+        <input type="text" name="small_title" placeholder="Small Title" value="{{old('small_title')}}">
         @error('small_title')
         <div style="color: red;">{{ $message }}</div>
         @enderror
         <hr style="width: 100%">
         <label>Content</label>
-        <textarea style="width: 100%;min-width: 100%;max-width: 100%" type="text" name="content" rows="7" placeholder="Content"></textarea>
+        <textarea style="width: 100%;min-width: 100%;max-width: 100%" type="text" name="content" rows="7" placeholder="Content">{{old('content')}}</textarea>
         @error('content')
         <div style="color: red;">{{ $message }}</div>
         @enderror
@@ -79,6 +79,9 @@
 
         <button type="submit" style="margin-top: 25px;">Create</button>
     </form>
+    <div style="width: 512px;margin: 25px auto;">
+        <a href="{{route('admin.pages')}}">Pages</a>
+    </div>
 
 @endsection
 @push('body_js')

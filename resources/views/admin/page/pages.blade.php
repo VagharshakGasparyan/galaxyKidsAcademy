@@ -89,8 +89,9 @@
             @endforeach
             </tbody>
         </table>
+        <div>{{ $items->appends(request()->query())->links('pagination.my_default') }}</div>
 
-    <div><a href="{{route('admin.pages.create')}}">Create Page</a></div>
+        <div style="margin: 25px 0;"><a href="{{route('admin.pages.create')}}">Create Page</a></div>
     </div>
 
 @endsection

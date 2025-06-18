@@ -1,7 +1,7 @@
 @extends('admin_root.admin_root')
 @section('title', 'Update Page')
 @section('content')
-    <h1 style="text-align: center">Pages</h1>
+    <h1 style="text-align: center">Update Page</h1>
     <form style="width: 512px;margin: 0 auto;display: flex;flex-direction: column;" method="post" action="{{route('admin.pages.postUpdate', $page->id)}}" enctype="multipart/form-data">
         @csrf
         <div style="display: flex; justify-content: flex-end">
@@ -17,7 +17,7 @@
         <div style="color: red;">{{ $message }}</div>
         @enderror
         <hr style="width: 100%">
-        <label>Slug * (Page Link)</label>
+        <label>Slug * (Page Link, can be path or path1/path2)</label>
         <input type="text" name="slug" placeholder="Slug" required value="{{old('slug', $page->slug)}}">
         @error('slug')
         <div style="color: red;">{{ $message }}</div>
@@ -92,8 +92,12 @@
         <button type="button" style="width: 20px;" id="del_imgs">&times;</button>
         <div id="show_images"></div>
 
-        <button type="submit" style="margin-top: 25px;">Create</button>
+        <button type="submit" style="margin-top: 25px;">Update</button>
     </form>
+    <div style="width: 512px;margin: 25px auto;">
+        <a href="{{route('admin.pages')}}">Pages</a>
+        <a href="{{route('admin.pages.create')}}">Create Page</a>
+    </div>
 
 @endsection
 @push('body_js')

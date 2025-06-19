@@ -61,6 +61,10 @@
         <div style="color: red;">{{ $message }}</div>
         @enderror
         <hr style="width: 100%">
+
+        <textarea id="tiny"></textarea>
+
+
         <label>Image</label>
         <input type="file" name="image" accept="image/jpeg,image/png" placeholder="Image">
         @error('image')
@@ -85,8 +89,14 @@
 
 @endsection
 @push('body_js')
+    <script src="{{asset('assets/js/tinymce.min.js')}}"></script>
+@endpush
+@push('body_js')
     <script>
         window.addEventListener('load', ()=>{
+            tinymce.init({ selector: '#tiny' });
+            // console.log(tinymce.get('tiny').getContent());
+
             async function fileToBase64(file) {
                 let b64 = await new Promise((resolve) => {
                     const reader = new FileReader();

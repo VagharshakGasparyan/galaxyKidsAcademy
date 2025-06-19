@@ -35,20 +35,5 @@ $mainMenu = \App\Models\MainMenu::whereNull('parent_id')->orderBy('order', 'asc'
         @foreach($mainMenu as $menuItem)
             @include('root.main_menu_item', ['item' => $menuItem])
         @endforeach
-
-{{--        @foreach($mainMenu as $menuItem)--}}
-{{--            <div class="dropdown">--}}
-{{--                @if($menuItem->page_id || $menuItem->link)--}}
-{{--                    <a href="{{'/'.($menuItem->link ?? $menuItem->page->slug)}}">{{$menuItem->name[app()->getLocale()] ?? '-'}}</a>--}}
-{{--                @else--}}
-{{--                    <div style="padding: 10px;">{{$menuItem->name[app()->getLocale()] ?? '-'}}</div>--}}
-{{--                @endif--}}
-{{--                <div class="dropdown-content">--}}
-{{--                    <a href="javascript:void(0)">Link 1</a>--}}
-{{--                    <a href="javascript:void(0)">Link 2</a>--}}
-{{--                    <a href="javascript:void(0)">Link 3</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        @endforeach--}}
     </div>
 </header>

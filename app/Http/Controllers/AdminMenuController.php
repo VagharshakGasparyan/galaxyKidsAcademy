@@ -86,4 +86,40 @@ class AdminMenuController extends Controller
 
         return back();
     }
+
+    public function storeOrder($arr, $parent_id = null)
+    {
+        try {
+            foreach ($arr as $index => $itemId){
+                if (is_array($itemId)){
+                    $newParentId = ($index > 0) ? $arr[$index - 1] : null;
+                    $this->storeOrder($itemId, $newParentId);
+                }else{
+                    if ($parent_id === null){
+                        MainMenu::find($itemId)->update(['order' => $index]);
+                    }else{
+                        MainMenu::find($itemId)->update(['order' => $index, 'parent_id' => $parent_id]);
+                    }
+                }
+            }
+        }catch (\Exception $exception){}
+    }
+
+    public function reorder(Request $request)
+    {
+        $data = $request->get('data');
+//        dd($data);
+        if ($data){
+            try {
+                $arr = json_decode($data, true)['data'];
+                $this->storeOrder($arr);
+            }catch (\Exception $e){
+//                dd($e->getMessage());
+                return response()->json(['ok' => 426], 426);
+            }
+        }
+
+        return response()->json(['ok' => 200], 200);
+    }
+
 }

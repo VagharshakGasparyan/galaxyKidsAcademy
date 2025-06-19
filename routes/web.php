@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/main-menu/update/{id}', [AdminMenuController::class, 'update'])->name('admin.main_menu.update');
         Route::post('/main-menu/update/{id}', [AdminMenuController::class, 'postUpdate'])->name('admin.main_menu.postUpdate');
         Route::delete('/main-menu/delete/{id}', [AdminMenuController::class, 'delete'])->name('admin.main_menu.delete');
+        Route::post('/main-menu-reorder', [AdminMenuController::class, 'reorder'])->name('admin.main_menu.reorder');
         //-----------------------------------Main Menu-end--------------------------------------------------------------
 
     });

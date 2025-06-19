@@ -21,7 +21,7 @@ class MainMenu extends Model
 
     public function children()
     {
-        return $this->hasMany(MainMenu::class, 'parent_id');
+        return $this->hasMany(MainMenu::class, 'parent_id')->orderBy('order', 'asc');
     }
     public function page()
     {

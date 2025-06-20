@@ -4,5 +4,7 @@
         <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="{{route('admin.pages')}}">Pages</a>
         <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="{{route('admin.photos')}}">Photos</a>
         <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="{{route('admin.main_menu')}}">Main Menu</a>
+        <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="{{route('admin.settings')}}">Settings</a>
+        <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="#">-</a>
    </div>
 </header>

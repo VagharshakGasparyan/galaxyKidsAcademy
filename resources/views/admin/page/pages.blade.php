@@ -66,8 +66,8 @@
                 <td>
                     @foreach($item->content as $local => $content)
                         <div style="display: flex;">
-                            <div style="padding: 5px;display: flex;align-items: center;background-color: #ddd;">{{$local}}</div>
-                            <div style="flex: 1;border: 1px solid #ddd;white-space: pre-wrap">{{$content}}</div>
+                            <div style="padding: 5px;display: flex;align-items: center;background-color: #ddd">{{$local}}</div>
+                            <div style="flex: 1;border: 1px solid #ddd;white-space: pre-wrap; text-overflow: ellipsis; overflow: hidden;display: -webkit-box; -webkit-line-clamp: 5;-webkit-box-orient: vertical;">{{$content}}</div>
                         </div>
                     @endforeach
                 </td>

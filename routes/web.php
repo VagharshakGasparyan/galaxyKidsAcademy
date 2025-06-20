@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AdminPhotoController;
+use App\Http\Controllers\AdminSettingsController;
 use App\Http\Controllers\PageController;
 use App\Http\Middleware\AdminAuthMiddleware;
 use App\Http\Middleware\LocaleMiddleware;
@@ -46,7 +47,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/main-menu/delete/{id}', [AdminMenuController::class, 'delete'])->name('admin.main_menu.delete');
         Route::post('/main-menu-reorder', [AdminMenuController::class, 'reorder'])->name('admin.main_menu.reorder');
         //-----------------------------------Main Menu-end--------------------------------------------------------------
-
+        //-----------------------------------Settings-begin-------------------------------------------------------------
+        Route::get('/settings', [AdminSettingsController::class, 'index'])->name('admin.settings');
+        Route::post('/settings', [AdminSettingsController::class, 'postUpdate'])->name('admin.settings.postUpdate');
+        //-----------------------------------Settings-end---------------------------------------------------------------
     });
 });
 

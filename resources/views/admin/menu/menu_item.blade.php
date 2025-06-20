@@ -10,6 +10,8 @@
                 </div>
             @endforeach
         </div>
+        <div style="border: 1px solid #ddd;padding: 5px;"><strong>Link: </strong>{{$item->link ?? '-'}}</div>
+        <div style="border: 1px solid #ddd;padding: 5px;"><strong>Page slug: </strong>{{$item->page->slug ?? '-'}}</div>
         <div style="flex: 1"></div>
         <div>
             <form action="{{ route('admin.main_menu.delete', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete?');">

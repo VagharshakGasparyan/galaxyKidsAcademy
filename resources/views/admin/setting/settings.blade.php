@@ -1,8 +1,17 @@
 @extends('admin_root.admin_root')
-@section('title', 'Menu')
+@section('title', 'Settings')
 @section('content')
     <h1 style="text-align: center">Settings</h1>
     <div style="width: 1024px;margin: 0 auto 150px auto;">
+        @if ($errors->any())
+            <div style="color: red">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('admin.settings.postUpdate') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <table class="my_table">
@@ -51,9 +60,6 @@
                 <button type="submit">Save</button>
             </div>
         </form>
-
-
-
     </div>
 
 

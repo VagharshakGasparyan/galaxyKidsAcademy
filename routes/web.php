@@ -50,6 +50,7 @@ Route::group(['prefix' => 'admin'], function () {
         //-----------------------------------Settings-begin-------------------------------------------------------------
         Route::get('/settings', [AdminSettingsController::class, 'index'])->name('admin.settings');
         Route::post('/settings', [AdminSettingsController::class, 'postUpdate'])->name('admin.settings.postUpdate');
+        Route::get('/logs', [AdminSettingsController::class, 'logs'])->name('admin.logs');
         //-----------------------------------Settings-end---------------------------------------------------------------
     });
 });

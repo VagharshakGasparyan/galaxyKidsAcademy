@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\MyConfig;
 use App\Services\FService;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class AdminSettingsController extends Controller
@@ -71,5 +74,24 @@ class AdminSettingsController extends Controller
         );
 
         return back();
+    }
+
+    public function logs(Request $request)
+    {
+        $page = $request->get('page') ?? 1;
+        $per_page = $request->get('per_page') ?? 10;
+        $path = storage_path('logs');
+        $fileNames = array_diff(scandir($path), ['.', '..']);
+        $logs = array_filter($fileNames, function($file) use ($path) {
+            return is_file($path.'/'.$file) && str_ends_with($file, '.log');
+        });
+        usort($logs, function ($a, $b) {
+            $dateA = strtotime(str_replace(['laravel-', '.log'], '', $a));
+            $dateB = strtotime(str_replace(['laravel-', '.log'], '', $b));
+            return $dateB <=> $dateA;
+        });
+//        dd($logs);
+
+        return view('admin.setting.logs', compact('page', 'per_page', 'logs'));
     }
 }

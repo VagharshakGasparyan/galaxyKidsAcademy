@@ -18,7 +18,11 @@
                     <td>{{ round($log->getSize() / 1024, 2) }} KB</td>
                     <td class="action-td">
                         <a href="{{route('admin.logs.show', $log->getFilename())}}">Show</a>
-                        <button type="button">Delete</button>
+                        <form action="{{ route('admin.logs.delete', $log->getFilename()) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

@@ -118,4 +118,14 @@ class AdminSettingsController extends Controller
 
         return view('admin.setting.show_log', compact('name', 'log', 'size', 'arrLog'));
     }
+    public function logsDelete($name)
+    {
+        $path = base_path('storage/logs/' . $name);
+        try {
+            File::delete($path);
+        }catch (\Exception $exception){
+
+        }
+        return back();
+    }
 }

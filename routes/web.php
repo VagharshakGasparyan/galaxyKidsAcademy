@@ -52,6 +52,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/settings', [AdminSettingsController::class, 'postUpdate'])->name('admin.settings.postUpdate');
         Route::get('/logs', [AdminSettingsController::class, 'logs'])->name('admin.logs');
         Route::get('/logs/show/{name}', [AdminSettingsController::class, 'logsShow'])->name('admin.logs.show');
+        Route::delete('/logs/delete/{name}', [AdminSettingsController::class, 'logsDelete'])->name('admin.logs.delete');
         //-----------------------------------Settings-end---------------------------------------------------------------
     });
 });

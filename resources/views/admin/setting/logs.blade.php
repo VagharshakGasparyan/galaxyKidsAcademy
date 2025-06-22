@@ -14,10 +14,10 @@
             <tbody>
             @foreach($logs as $log)
                 <tr>
-                    <td>{{$log}}</td>
-                    <td>15MB</td>
+                    <td>{{$log->getFilename()}}</td>
+                    <td>{{ round($log->getSize() / 1024, 2) }} KB</td>
                     <td class="action-td">
-                        <button type="button">Show</button>
+                        <a href="{{route('admin.logs.show', $log->getFilename())}}">Show</a>
                         <button type="button">Delete</button>
                     </td>
                 </tr>

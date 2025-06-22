@@ -8,6 +8,7 @@ use App\Services\FService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class AdminSettingsController extends Controller
@@ -78,20 +79,43 @@ class AdminSettingsController extends Controller
 
     public function logs(Request $request)
     {
-        $page = $request->get('page') ?? 1;
+
+//        $page = $request->get('page') ?? 1;
         $per_page = $request->get('per_page') ?? 10;
-        $path = storage_path('logs');
-        $fileNames = array_diff(scandir($path), ['.', '..']);
-        $logs = array_filter($fileNames, function($file) use ($path) {
-            return is_file($path.'/'.$file) && str_ends_with($file, '.log');
-        });
-        usort($logs, function ($a, $b) {
-            $dateA = strtotime(str_replace(['laravel-', '.log'], '', $a));
-            $dateB = strtotime(str_replace(['laravel-', '.log'], '', $b));
-            return $dateB <=> $dateA;
-        });
+//        $path = storage_path('logs');
+//        $fileNames = array_diff(scandir($path), ['.', '..']);
+//        $logs = array_filter($fileNames, function($file) use ($path) {
+//            return is_file($path.'/'.$file) && str_ends_with($file, '.log');
+//        });
+//        usort($logs, function ($a, $b) {
+//            $dateA = strtotime(str_replace(['laravel-', '.log'], '', $a));
+//            $dateB = strtotime(str_replace(['laravel-', '.log'], '', $b));
+//            return $dateB <=> $dateA;
+//        });
+
+        $logs = collect(File::allFiles(base_path('storage/logs')))
+            ->filter(fn($file) => str_starts_with(basename($file), 'laravel-') && str_ends_with(basename($file), '.log'))
+            ->sortDesc()
+            ->paginate(15);
 //        dd($logs);
 
-        return view('admin.setting.logs', compact('page', 'per_page', 'logs'));
+        return view('admin.setting.logs', compact('per_page', 'logs'));
+    }
+
+    public function logsShow($name)
+    {
+//        Log::debug('***---===|||===---***');
+        $path = base_path('storage/logs/' . $name);
+        try {
+            $log = File::get($path);
+        }catch (\Exception $exception){
+            abort(404);
+        }
+
+        $size = File::size($path);
+        $arrLog = preg_split('/(?=\[(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})\])/', $log, -1, PREG_SPLIT_NO_EMPTY);
+        $arrLog = array_reverse($arrLog);
+
+        return view('admin.setting.show_log', compact('name', 'log', 'size', 'arrLog'));
     }
 }

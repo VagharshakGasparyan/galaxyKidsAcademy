@@ -1,8 +1,11 @@
 @extends('admin_root.admin_root')
 @section('title', 'Menu')
 @section('content')
-    <h1 style="text-align: center">Main Menu</h1>
-    <div style="width: 1024px;margin: 0 auto 150px auto;">
+    <div style="width: 1024px;">
+        <div class="admin-content-title">
+            <span></span>
+            <h1 class="text-center">Main Menu</h1>
+        </div>
 
         <div id="menu_container">
             @foreach($menu as $item)
@@ -10,22 +13,15 @@
             @endforeach
         </div>
         <div style="margin-top: 15px;">
-            <button type="button" id="reorder_menu">Reorder</button>
+            <button type="button" class="btn btn-primary" id="reorder_menu">Reorder</button>
         </div>
-        <div style="margin: 25px 0;"><a href="{{route('admin.main_menu.create')}}">Create Main Menu</a></div>
+        <div style="margin: 25px 0;"><a class="btn btn-secondary" href="{{route('admin.main_menu.create')}}">Create Main Menu</a></div>
     </div>
 
 
 @endsection
 @push('css')
     <style>
-        .my_table{
-            border-collapse: collapse;
-            width: 100%;
-        }
-        .my_table td, .my_table th{
-            border: 2px solid #aaa;
-        }
         .menu_child_container{
             min-height: 0;
             margin-left: 35px;
@@ -33,7 +29,7 @@
         }
         .menu_item_info{
             display: flex;
-            border: 1px solid black;
+            border: 1px solid var(--c);
             border-radius: 5px;
             overflow: hidden;
         }
@@ -46,15 +42,6 @@
 @push('body_js')
     <script>
         window.addEventListener('load', ()=>{
-            let multiDrag = document.getElementById('multiDrag');
-            new Sortable(multiDrag, {
-                multiDrag: true, // Enable multi-drag
-                // selectedClass: 'selected', // The class applied to the selected items
-                fallbackTolerance: 3, // So that we can select items on mobile
-                animation: 150,
-                handle: '.handle',
-            });
-
             new Sortable(document.getElementById('menu_container'), {
                 multiDrag: true, // Enable multi-drag
                 // selectedClass: 'selected', // The class applied to the selected items

@@ -19,10 +19,10 @@ body {
 
 .admin-header {
     z-index: 9;
-    box-shadow: 5px 0 5px black;
+    box-shadow: 0 5px 10px black;
     display: flex;
     align-items: center;
-    padding: 5px 0;
+    padding: 7px 0;
 }
 
 .admin-header-sidebar {
@@ -58,6 +58,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 25px;
+    margin-top: 10px;
 }
 
 .admin-content-title > :nth-child(2) {

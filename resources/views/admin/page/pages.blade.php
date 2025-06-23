@@ -1,9 +1,12 @@
 @extends('admin_root.admin_root')
-@section('title', 'Dashboard')
+@section('title', 'Pages')
 @section('content')
-    <div style="width: 1280px;margin: 0 auto;">
-        <h1 style="text-align: center">Pages</h1>
-        <table style="width: 100%" class="my_table">
+    <div>
+        <div class="admin-content-title">
+            <span></span>
+            <h1 class="text-center">Pages</h1>
+        </div>
+        <table class="my_table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -72,17 +75,18 @@
                     @endforeach
                 </td>
                 <td>{{$item->slug}}</td>
-                <td>{{$item->created_at}}</td>
-                <td>{{$item->updated_at}}</td>
+                <td style="white-space: nowrap">{{$item->created_at}}</td>
+                <td style="white-space: nowrap">{{$item->updated_at}}</td>
                 <td>
+                    <a class="btn btn-secondary" href="{{route('admin.pages.update', $item->id)}}">Edit</a>
+                    <a class="btn btn-secondary" href="{{route('admin.pages.show', $item->id)}}">Show</a>
+                    <a class="btn btn-secondary" href="{{route('page', ['slug' => $item->slug])}}" target="_blank">Open Page</a>
                     <form action="{{ route('admin.pages.delete', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete?');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">Delete</button>
+                        <button class="btn btn-sm btn-light" type="submit">Delete</button>
                     </form>
-                    <div><a href="{{route('admin.pages.update', $item->id)}}">Edit</a></div>
-                    <div><a href="{{route('admin.pages.show', $item->id)}}">Show</a></div>
-                    <div><a href="{{route('page', ['slug' => $item->slug])}}" target="_blank">Open Page</a></div>
+
                 </td>
             </tr>
             @endforeach
@@ -90,18 +94,13 @@
         </table>
         <div>{{ $items->appends(request()->query())->links('pagination.my_default') }}</div>
 
-        <div style="margin: 25px 0;"><a href="{{route('admin.pages.create')}}">Create Page</a></div>
+        <div class="mt-5"><a class="btn btn-primary" href="{{route('admin.pages.create')}}">Create Page</a></div>
     </div>
 
 @endsection
 @push('css')
     <style>
-        .my_table{
-            border-collapse: collapse;
-        }
-        .my_table td, .my_table th{
-            border: 2px solid #aaa;
-        }
+
     </style>
 @endpush
 @push('body_js')

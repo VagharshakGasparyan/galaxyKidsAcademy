@@ -1,0 +1,136 @@
+:root {
+    --bg0: #334455;
+    --bg: #112233;
+    --c0: #fff;
+    --c: #abc;
+    --bg1: #223344;
+    --c1: #def;
+
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--c);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.admin-header {
+    z-index: 9;
+    box-shadow: 5px 0 5px black;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.admin-header-sidebar {
+    width: 250px;
+}
+
+.admin-main {
+    flex: 1;
+    display: flex;
+    max-height: 100vh;
+}
+
+.admin-sidebar {
+    width: 250px;
+    padding: 10px;
+    overflow: auto;
+    margin-left: 0;
+    transition: margin-left 300ms;
+}
+
+.admin-sidebar-hide {
+    margin-left: -250px;
+}
+
+.admin-content {
+    flex: 1;
+    overflow: auto;
+    background-color: var(--bg1);
+    padding: 5px 15px 30px 15px;
+}
+
+.admin-content-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.admin-content-title > :nth-child(2) {
+    flex: 1;
+}
+
+.admin-footer {
+    padding: 5px;
+}
+
+.admin-sidebar-item {
+    text-decoration: none;
+    color: var(--c);
+    display: block;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+
+.admin-sidebar-item:hover {
+    color: var(--c1);
+    text-decoration: none;
+    background-color: var(--bg1);
+}
+
+.admin-sidebar-item:active {
+    text-decoration: none;
+    color: var(--c0);
+    background-color: var(--bg0);
+}
+
+#admin_header_bar {
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+#admin_header_bar:hover {
+    color: var(--c1);
+    background-color: var(--bg1);
+}
+
+#admin_header_bar:active {
+    color: var(--c0);
+    background-color: var(--bg0);
+}
+
+.my_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.my_table th {
+    border: 2px double #fff1;
+    padding: 10px;
+    color: var(--c0);
+    font-size: 1.2rem;
+}
+
+.my_table td {
+    border: 2px solid #fff1;
+    padding: 10px;
+}
+
+.my_table .action-td {
+    width: 0;
+    white-space: nowrap;
+}
+
+.input-eye {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    right: 10px;
+    color: var(--bg1);
+    cursor: pointer;
+}

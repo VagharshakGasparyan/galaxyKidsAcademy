@@ -1,13 +1,22 @@
 @extends('admin_root.admin_root')
 @section('title', 'Show Log')
 @section('content')
-    <h1 style="text-align: center">Show Log</h1>
-    <div style="width: 1024px;margin: 0 auto 150px auto;">
-{{--        @dump($log->getSize())--}}
-        <div style="margin-bottom: 25px;">{{$name}}, {{round($size / 1024, 2)}} KB</div>
-{{--        <div style="white-space: pre-wrap">{{$log}}</div>--}}
-        @foreach($arrLog as $logItem)
-            <div class="log-item" style="margin-top: 20px; ">{{$logItem}}</div>
+    <div class="admin-content-title">
+        <a href="{{route('admin.logs')}}" class="btn btn-outline-light"><i class="fa fa-arrow-left me-2"></i>Logs</a>
+        <h1 class="text-center">Log</h1>
+    </div>
+    <div class="accordion accordion-flush" id="accordionFlushLogs">
+        @foreach($arrLog as $indexLog => $logItem)
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading-{{$indexLog}}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{$indexLog}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <div class="log-item">{{$logItem}}</div>
+                    </button>
+                </h2>
+                <div id="flush-collapse-{{$indexLog}}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{$indexLog}}" data-bs-parent="#accordionFlushLogs">
+                    <div class="accordion-body">{{$logItem}}</div>
+                </div>
+            </div>
         @endforeach
     </div>
 

@@ -1,10 +1,11 @@
 @extends('admin_root.admin_root')
 @section('title', 'Dashboard')
 @section('content')
-    <div style="width: 512px;margin: 0 auto;">
-        <div style="text-align: center">Dashboard Page <a href="{{route('admin.logout')}}">Logout</a></div>
-        <div><a>Create Menu</a></div>
+    <div class="admin-content-title">
+        <span></span>
+        <h1 class="text-center">Dashboard</h1>
     </div>
+
 
 @endsection
 @push('body_js')

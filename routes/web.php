@@ -17,9 +17,12 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/logging', [AdminController::class, 'logging'])->name('admin.logging');
     Route::group(['middleware' => [AdminAuthMiddleware::class]], function () {
         Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-        //-----------------------------------Menu-begin-----------------------------------------------------------------
-        Route::get('/menu', [AdminMenuController::class, 'index'])->name('admin.menu');
-        //-----------------------------------Menu-end-------------------------------------------------------------------
+
+        //-----------------------------------Account-begin-----------------------------------------------------------------
+        Route::get('/account', [AdminController::class, 'account'])->name('admin.account');
+        Route::post('/account/update', [AdminController::class, 'accountPostUpdate'])->name('admin.account.update');
+        Route::post('/account/update-password', [AdminController::class, 'accountPostUpdatePassword'])->name('admin.account.update_password');
+        //-----------------------------------Account-end-------------------------------------------------------------------
         //-----------------------------------Page-begin-----------------------------------------------------------------
         Route::get('/pages', [AdminPageController::class, 'index'])->name('admin.pages');
         Route::get('/pages/create', [AdminPageController::class, 'create'])->name('admin.pages.create');

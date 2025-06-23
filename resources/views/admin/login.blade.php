@@ -1,12 +1,23 @@
 @extends('admin_root.admin_root')
 @section('title', 'Login')
 @section('content')
-    <div style="text-align: center">Login Page</div>
+    <h2 style="text-align: center">Login</h2>
     <form style="width: 512px;margin: 0 auto;display: flex;flex-direction: column" method="post" action="{{route('admin.logging')}}">
     @csrf
-        <input type="text" name="email" placeholder="Email" value="admin@mail.com">
-        <input type="password" name="password" placeholder="Password" value="12345678">
-        <button type="submit">Login</button>
+        <div class="mb-3">
+            <label for="admin-email" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" id="admin-email" placeholder="Email" value="admin@mail.com">
+        </div>
+        <div class="mb-3">
+            <label for="admin-password" class="form-label">Password</label>
+            <div class="position-relative">
+                <input type="password" name="password" class="form-control" id="admin-password" placeholder="Password" value="12345678">
+                <i class="fa fa-eye input-eye"></i>
+            </div>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Login</button>
+        </div>
     </form>
 
 @endsection

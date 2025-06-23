@@ -46,4 +46,45 @@ class AdminController extends Controller
     {
         return view('admin.dashboard');
     }
+    public function account(): \Illuminate\Contracts\View\View
+    {
+        $user = Auth::user();
+        return view('admin.account', compact('user'));
+    }
+    public function accountPostUpdate(Request $request)
+    {
+        $user = Auth::user();
+        $request->validate([
+            'name' => 'required|min:2',
+            'email' => 'required|email|min:6|unique:users,email,' . $user->id,
+        ]);
+
+        $user->update([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+        ]);
+
+        return back();
+    }
+    public function accountPostUpdatePassword(Request $request)
+    {
+        $user = Auth::user();
+        $request->validate([
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|min:8|required_with:password|same:password',
+            'current_password' => 'required|min:8',
+        ]);
+        $hashedPassword = $user->password;
+        $current_password = $request->get('current_password');
+        if (!Hash::check($current_password, $hashedPassword)) {
+            return back()->withErrors(['current_password' => 'Not a correct password']);
+        }
+        $hashed_password = Hash::make($request->get('password'));
+        $user->update([
+            'password' => $hashed_password,
+        ]);
+
+        return back();
+    }
+
 }

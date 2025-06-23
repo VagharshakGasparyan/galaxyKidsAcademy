@@ -1,11 +1,25 @@
-<header style="border: 1px solid black">
-    <h1 style="text-align: center">Admin Header</h1>
-   <div style="display: flex;justify-content: center; align-items: center;">
-        <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="{{route('admin.pages')}}">Pages</a>
-        <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="{{route('admin.photos')}}">Photos</a>
-        <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="{{route('admin.main_menu')}}">Main Menu</a>
-        <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="{{route('admin.settings')}}">Settings</a>
-        <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="#">Translations</a>
-        <a style="padding: 5px;margin: 5px;border: 1px solid #ddd;border-radius: 5px;" href="{{route('admin.logs')}}">Logs</a>
-   </div>
+<header class="admin-header">
+    <div class="admin-header-sidebar d-flex">
+        <div style="flex: 1" class="ps-2 text-center">Galaxy Kids Academy</div>
+        <i class="fa fa-2x fa-bars" id="admin_header_bar"></i>
+    </div>
+    <div style="flex: 1">
+
+    </div>
+    @auth
+        <div class="pe-3">{{auth()->user()->name}}, {{auth()->user()->email}}</div>
+    @endauth
+
+    <div class="pe-2">
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Account
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{{route('admin.account')}}">Edit Account</a></li>
+                <li><a class="dropdown-item" href="{{route('admin.logout')}}"><i class="fa fa-sign-out me-2"></i>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
 </header>

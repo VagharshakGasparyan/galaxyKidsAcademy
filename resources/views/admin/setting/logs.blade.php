@@ -1,8 +1,13 @@
 @extends('admin_root.admin_root')
 @section('title', 'Logs')
 @section('content')
-    <h1 style="text-align: center">Logs</h1>
-    <div style="width: 1024px;margin: 0 auto 150px auto;">
+
+    <div style="max-width: 1024px;">
+        <div class="admin-content-title">
+            <span></span>
+            <h1 class="text-center">Logs</h1>
+        </div>
+
         <table class="my_table">
             <thead>
             <tr>
@@ -17,11 +22,11 @@
                     <td>{{$log->getFilename()}}</td>
                     <td>{{ round($log->getSize() / 1024, 2) }} KB</td>
                     <td class="action-td">
-                        <a href="{{route('admin.logs.show', $log->getFilename())}}">Show</a>
-                        <form action="{{ route('admin.logs.delete', $log->getFilename()) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete?');">
+                        <a class="btn btn-sm btn-secondary me-2" href="{{route('admin.logs.show', $log->getFilename())}}">Show</a>
+                        <form class="d-inline-block" action="{{ route('admin.logs.delete', $log->getFilename()) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Delete</button>
+                            <button class="btn btn-sm btn-light" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -35,18 +40,7 @@
 @endsection
 @push('css')
     <style>
-        .my_table{
-            border-collapse: collapse;
-            width: 100%;
-        }
-        .my_table td, .my_table th{
-            border: 2px solid #aaa;
-        }
-        .action-td{
-            width: 0;
-            white-space: nowrap;
-            /*max-width: max-content;*/
-        }
+
     </style>
 @endpush
 @push('head_js')

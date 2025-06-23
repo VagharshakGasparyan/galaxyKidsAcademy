@@ -1,8 +1,11 @@
 @extends('admin_root.admin_root')
 @section('title', 'Settings')
 @section('content')
-    <h1 style="text-align: center">Settings</h1>
-    <div style="width: 1024px;margin: 0 auto 150px auto;">
+    <div style="max-width: 1024px;">
+        <div class="admin-content-title">
+            <span></span>
+            <h1 class="text-center">Settings</h1>
+        </div>
         @if ($errors->any())
             <div style="color: red">
                 <ul>
@@ -20,7 +23,7 @@
                     <th>Name</th>
                     <th>View</th>
                     <th>Value</th>
-                    <th>Actions</th>
+                    <th class="action-td">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,36 +31,36 @@
                     <td>Main Logo</td>
                     <td id="show_logo">
                         @if($settings['header_logo']->value1 ?? null)
-                            <img src="{{asset('storage/' . $settings['header_logo']->value1)}}" alt="header logo" style="max-height: 50px;">
+                            <img src="{{asset('storage/' . $settings['header_logo']->value1)}}" alt="header logo" style="max-height: 50px;border-radius: 5px;">
                         @endif
                     </td>
-                    <td></td>
+                    <td>{{$settings['header_logo']->value1 ?? '-'}}</td>
                     <td>
                         <input type="hidden" value="{{$settings['header_logo']->value1 ?? ''}}" name="old_header_logo">
                         <input id="main_logo_input" type="file" name="header_logo" accept="image/jpeg,image/png,image/icon" style="display: none;">
-                        <button type="button" id="delete_main_logo_button">Delete</button>
-                        <button id="change_main_logo_button" type="button">Change</button>
+                        <button id="change_main_logo_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
+                        <button type="button" class="btn btn-sm btn-light" id="delete_main_logo_button">Delete</button>
                     </td>
                 </tr>
                 <tr>
                     <td>Icon</td>
                     <td id="show_icon">
                         @if($settings['icon']->value1 ?? null)
-                            <img src="{{asset('storage/' . $settings['icon']->value1)}}" alt="icon" style="max-height: 50px;">
+                            <img src="{{asset('storage/' . $settings['icon']->value1)}}" alt="icon" style="max-height: 50px;border-radius: 5px;">
                         @endif
                     </td>
-                    <td></td>
-                    <td>
+                    <td>{{$settings['icon']->value1 ?? '-'}}</td>
+                    <td class="action-td">
                         <input type="hidden" value="{{$settings['icon']->value1 ?? ''}}" name="old_icon">
                         <input id="icon_input" type="file" name="icon" accept="image/jpeg,image/png,image/icon" style="display: none;">
-                        <button type="button" id="delete_icon_button">Delete</button>
-                        <button id="change_icon_button" type="button">Change</button>
+                        <button id="change_icon_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
+                        <button type="button" class="btn btn-sm btn-light" id="delete_icon_button">Delete</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
             <div style="margin-top: 25px;">
-                <button type="submit">Save</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>
@@ -66,13 +69,7 @@
 @endsection
 @push('css')
     <style>
-        .my_table{
-            border-collapse: collapse;
-            width: 100%;
-        }
-        .my_table td, .my_table th{
-            border: 2px solid #aaa;
-        }
+
     </style>
 @endpush
 @push('head_js')

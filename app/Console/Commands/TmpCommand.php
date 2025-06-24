@@ -30,12 +30,13 @@ class TmpCommand extends Command
      */
     public function handle()
     {
-        Storage::disk('public')->delete('page_images/e0bb6bdd5e64e6a4823b3d163cb3bb43.jpg');
-        return 0;
+//        Storage::disk('public')->delete('page_images/e0bb6bdd5e64e6a4823b3d163cb3bb43aaa.jpg');
+//        return 0;
+
 
         $pass = '12345678';
         $hashed = Hash::make($pass);
-        dd($hashed);
+        dd($hashed);//$2y$12$TAfLEzFvAOkpvVQGmqi8WOOR1dH0EmSVc7gMbQjCwnddFP4Qr4CIG
         foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties){
             dump($localeCode, $properties);
         }

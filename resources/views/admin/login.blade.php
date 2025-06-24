@@ -7,6 +7,9 @@
         <div class="mb-3">
             <label for="admin-email" class="form-label">Email address</label>
             <input type="email" name="email" class="form-control" id="admin-email" placeholder="Email" value="admin@mail.com">
+            @error('email')
+            <div class="text-danger">{{$message}}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="admin-password" class="form-label">Password</label>
@@ -14,6 +17,9 @@
                 <input type="password" name="password" class="form-control" id="admin-password" placeholder="Password" value="12345678">
                 <i class="fa fa-eye input-eye"></i>
             </div>
+            @error('password')
+            <div class="text-danger">{{$message}}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <button class="btn btn-primary" type="submit">Login</button>

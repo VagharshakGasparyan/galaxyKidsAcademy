@@ -10,6 +10,14 @@ window.addEventListener('load', ()=>{
             });
         }
    });
+    document.querySelectorAll('.input-close').forEach((el)=>{
+        let inp = el.parentElement.querySelector('input');
+        if(inp){
+            el.addEventListener('click', ()=>{
+                // inp.value = null;
+            });
+        }
+    });
     //---------------------------------------------------
     let admin_header_bar = document.getElementById('admin_header_bar');
     let admin_sidebar = document.querySelector('.admin-sidebar');

@@ -127,7 +127,7 @@ body {
     white-space: nowrap;
 }
 
-.input-eye {
+.input-eye, .input-close {
     position: absolute;
     transform: translateY(-50%);
     top: 50%;

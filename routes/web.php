@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AdminPhotoController;
 use App\Http\Controllers\AdminSettingsController;
+use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\PageController;
 use App\Http\Middleware\AdminAuthMiddleware;
 use App\Http\Middleware\LocaleMiddleware;
@@ -57,6 +58,15 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/logs/show/{name}', [AdminSettingsController::class, 'logsShow'])->name('admin.logs.show');
         Route::delete('/logs/delete/{name}', [AdminSettingsController::class, 'logsDelete'])->name('admin.logs.delete');
         //-----------------------------------Settings-end---------------------------------------------------------------
+        //-----------------------------------Users-begin----------------------------------------------------------------
+        Route::get('/users', [AdminUsersController::class, 'index'])->name('admin.users');
+        Route::get('/users/create', [AdminUsersController::class, 'create'])->name('admin.users.create');
+        Route::post('/users/create', [AdminUsersController::class, 'postCreate'])->name('admin.users.postCreate');
+        Route::get('/users/update/{id}', [AdminUsersController::class, 'update'])->name('admin.users.update');
+        Route::post('/users/update/{id}', [AdminUsersController::class, 'postUpdate'])->name('admin.users.postUpdate');
+        Route::get('/users/show/{id}', [AdminUsersController::class, 'show'])->name('admin.users.show');
+        Route::delete('/users/delete/{id}', [AdminUsersController::class, 'delete'])->name('admin.users.delete');
+        //-----------------------------------Users-end------------------------------------------------------------------
     });
 });
 

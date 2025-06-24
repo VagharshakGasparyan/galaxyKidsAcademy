@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AppUpdateCommand extends Command
 {
@@ -25,6 +27,10 @@ class AppUpdateCommand extends Command
      */
     public function handle()
     {
-        //
+        if(!Schema::hasColumn('users', 'photo')){
+            Schema::table('users', function (Blueprint $table) {
+                $table->string('photo')->nullable()->after('name');
+            });
+        }
     }
 }

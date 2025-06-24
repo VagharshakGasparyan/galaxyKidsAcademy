@@ -7,7 +7,7 @@
     </div>
     <div class="accordion accordion-flush" id="accordionFlushLogs">
         @foreach($arrLog as $indexLog => $logItem)
-            <div class="accordion-item">
+            <div class="accordion-item" style="border-bottom: 7px solid var(--bg1)">
                 <h2 class="accordion-header" id="flush-heading-{{$indexLog}}">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{$indexLog}}" aria-expanded="false" aria-controls="flush-collapseOne">
                         <div class="log-item">{{$logItem}}</div>

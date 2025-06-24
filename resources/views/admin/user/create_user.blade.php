@@ -1,47 +1,84 @@
 @extends('admin_root.admin_root')
-@section('title', 'Create Photo')
+@section('title', 'Create User')
 @section('content')
-    <h1 style="text-align: center">Photos</h1>
-    <form style="width: 512px;margin: 0 auto;display: flex;flex-direction: column;" method="post" action="{{route('admin.photos.postCreate')}}" enctype="multipart/form-data">
-        @csrf
-        <div style="display: flex; justify-content: flex-end">
-            <div style="margin-right: 10px;">Choose language </div>
-            <select name="lang">
-                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                    <option value="{{$localeCode}}" @if(old('lang') == $localeCode) selected @endif>{{$properties['name']}}</option>
-                @endforeach
-            </select>
+
+    <form style="max-width: 768px;" method="post" action="{{route('admin.users.postCreate')}}" enctype="multipart/form-data">
+        <div class="admin-content-title">
+            <a href="{{route('admin.users')}}" class="btn btn-outline-light"><i class="fa fa-arrow-left me-2"></i>Users</a>
+            <h1 class="text-center">Create User</h1>
         </div>
-        <label><input type="checkbox" name="enabled" checked> Enabled</label>
-        @error('enabled')
+        @csrf
+        <div class="mb-3">
+            <label for="user_name" class="form-label">Name *</label>
+            <input type="text" name="name" class="form-control" placeholder="Name" id="user_name" value="{{old('name')}}" required>
+            @error('name')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="user_email" class="form-label">Email *</label>
+            <input type="email" name="email" class="form-control" placeholder="Email" id="user_email" value="{{old('email')}}" required>
+            @error('email')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="admin_user_password" class="form-label">Password *</label>
+            <div class="position-relative">
+                <input type="password" name="password" class="form-control" id="admin_user_password" placeholder="New Password" value="{{old('password')}}" required>
+                <i class="fa fa-eye input-eye"></i>
+            </div>
+            @error('password')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="admin_user_confirm_password" class="form-label">Confirm Password *</label>
+            <div class="position-relative">
+                <input type="password" name="confirm_password" class="form-control" id="admin_user_confirm_password" placeholder="Confirm Password" required>
+                <i class="fa fa-eye input-eye"></i>
+            </div>
+            @error('confirm_password')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="admin_user_your_password" class="form-label">Your password * (not the User you are creating)</label>
+            <div class="position-relative">
+                <input type="password" name="your_password" class="form-control" id="admin_user_your_password" placeholder="Your Password" required>
+                <i class="fa fa-eye input-eye"></i>
+            </div>
+            @error('your_password')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="user_role" class="form-label">Role (default admin)</label>
+            <select name="role" class="form-select" id="user_role">
+                <option value="admin">admin</option>
+            </select>
+            @error('role')
             <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <hr style="width: 100%">
-        <label>Title</label>
-        <input type="text" name="title" placeholder="Title" value="{{old('title')}}">
-        @error('title')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <hr style="width: 100%">
-        <label>Description</label>
-        <textarea style="width: 100%;min-width: 100%;max-width: 100%" type="text" name="description" rows="7" placeholder="Description">{{old('description')}}</textarea>
-        @error('description')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <hr style="width: 100%">
-        <label>Image *</label>
-        <input type="file" name="image" accept="image/jpeg,image/png" placeholder="Image">
-        @error('image')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <button type="button" style="width: 20px;" id="del_img">&times;</button>
-        <div id="show_image"></div>
-        <hr style="width: 100%">
-        <button type="submit" style="margin-top: 25px;">Create</button>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="user_photo" class="form-label">Photo (Dimensions: min 48px, max 1920px, size: max 15mB.)</label>
+            <div class="position-relative">
+                <input type="file" name="photo" class="form-control" id="user_photo" accept="image/jpeg,image/png" placeholder="Photo">
+                <button type="button" class="btn btn-close input-close" id="del_img"></button>
+            </div>
+            @error('photo')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+            <div class="mt-2" id="show_image"></div>
+        </div>
+
+        <div class="mt-5">
+            <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+
     </form>
-    <div style="width: 512px;margin: 25px auto;">
-        <a href="{{route('admin.photos')}}">Photos</a>
-    </div>
 
 @endsection
 @push('body_js')
@@ -58,12 +95,12 @@
 
             let del_img = document.getElementById('del_img');
             let show_image = document.getElementById('show_image');
-            let imgInp = document.querySelector('input[type="file"][name="image"]');
+            let imgInp = document.querySelector('input[type="file"][name="photo"]');
             imgInp.addEventListener('input', async ()=>{
                 let file = imgInp.files[0];
                 if (file.type.startsWith('image')) {
                     let img = new Image;
-                    img.style.width = '100%';
+                    img.style.maxWidth = '100%';
                     img.src = await fileToBase64(file);
                     show_image.innerHTML = '';
                     show_image.appendChild(img);

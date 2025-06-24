@@ -4,4 +4,8 @@ avelacnel pages-um tiny text grelu tegh
 
 adminki ejerum avelacnel filtrner
 
-avelacnel users: add edit delete
+pagination design nayel
+
+table-i stickin avelacnel
+
+account-i photon cuyc tal, update-um photo-n avelacnel

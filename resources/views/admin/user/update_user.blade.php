@@ -1,5 +1,5 @@
 @extends('admin_root.admin_root')
-@section('title', 'Update Page')
+@section('title', 'Update User')
 @section('content')
 
     <form style="max-width: 768px;" method="post" action="{{route('admin.users.postUpdate', $user->id)}}" enctype="multipart/form-data">
@@ -63,7 +63,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="user_photo" class="form-label">Photo * (Dimensions: min 48px, max 1920px, size: max 15mB.)</label>
+            <label for="user_photo" class="form-label">Photo (Dimensions: min 48px, max 1920px, size: max 15mB.)</label>
             <div class="position-relative">
                 <input type="file" name="photo" class="form-control" id="user_photo" accept="image/jpeg,image/png" placeholder="Photo">
                 <button type="button" class="btn btn-close input-close" id="del_img"></button>

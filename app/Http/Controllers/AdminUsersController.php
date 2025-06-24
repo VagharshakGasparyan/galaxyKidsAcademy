@@ -20,42 +20,39 @@ class AdminUsersController extends Controller
     public function create(): \Illuminate\Contracts\View\View
     {
 
-        return view('admin.photo.create_user');
+        return view('admin.user.create_user');
     }
 
     public function postCreate(Request $request): \Illuminate\Http\RedirectResponse
     {
-//        dd($request->all());
         request()->validate([
-            'title' => 'nullable|min:1|max:10000',
-            'description' => 'nullable|min:1|max:1000000',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:15000|dimensions:min_width=96,min_height=96,max_width=1920,max_height=1920',
+            'name' => 'required|min:2',
+            'email' => 'required|email|min:6|unique:users,email',
+            'role' => 'nullable|string|in:admin,user',
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|min:8|required_with:password|same:password',
+            'your_password' => 'required|min:8|required_with:password',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:15000|dimensions:min_width=48,min_height=48,max_width=1920,max_height=1920',
         ]);
-        $enabled = $request->has('enabled');
-        $lang = $request->get('lang') ?? app()->getLocale();
-        if (!app('laravellocalization')->checkLocaleInSupportedLocales($lang)) {
-            $lang = app()->getLocale();
+        if (!Hash::check($request->get('your_password'), auth()->user()->password)) {
+            return back()->withErrors(['your_password' => 'Not a correct password']);
         }
-        $title = [];
-        $description = [];
-        foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties){
-            $title[$localeCode] = '';
-            $description[$localeCode] = '';
+        $password = $request->get('password');
+        $photo = $request->files->get('photo') ?? null;
+        if($photo){
+            $src_filePath = (new FService())->fileUpload($photo, 'users');
+            $photo = $src_filePath['filePath'];
         }
-        $title[$lang] = $request->get('title') ?? '';
-        $description[$lang] = $request->get('description') ?? '';
 
-        $src_filePath = (new FService())->fileUpload($request->files->get('image'), 'photos');
-        $image = $src_filePath['filePath'];
-
-        Photo::create([
-            'enabled' => $enabled,
-            'image' => $image,
-            'title' => $title,
-            'description' => $description,
+        User::create([
+            'name' => $request->get('name'),
+            'photo' => $photo,
+            'email' => $request->get('email'),
+            'role' => $request->get('role') ?? 'admin',
+            'password' => Hash::make($password),
         ]);
 
-        return redirect()->route('admin.photos');
+        return redirect()->route('admin.users');
     }
 
     public function update($id): \Illuminate\Contracts\View\View
@@ -112,14 +109,11 @@ class AdminUsersController extends Controller
         return back();
     }
 
-    public function show(Request $request, $id): \Illuminate\Contracts\View\View
+    public function show($id): \Illuminate\Contracts\View\View
     {
-        $photo = Photo::findOrFail($id);
-        $lang = $request->get('lang') ?? app()->getLocale();
-        if (!app('laravellocalization')->checkLocaleInSupportedLocales($lang)) {
-            $lang = app()->getLocale();
-        }
-        return view('admin.photo.show_photo', compact('photo', 'lang'));
+        $user = User::findOrFail($id);
+
+        return view('admin.user.show_user', compact('user'));
     }
 
     public function delete($id): \Illuminate\Http\RedirectResponse

@@ -73,7 +73,7 @@ body {
     text-decoration: none;
     color: var(--c);
     display: block;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 5px;
 }
 
@@ -87,6 +87,10 @@ body {
     text-decoration: none;
     color: var(--c0);
     background-color: var(--bg0);
+}
+.admin-sidebar-item.active{
+    color: var(--bg);
+    background-color: var(--c);
 }
 
 #admin_header_bar {

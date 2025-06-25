@@ -1,7 +1,7 @@
 @extends('admin_root.admin_root')
 @section('title', 'Update Page')
 @section('content')
-    <form style="max-width: 768px;" method="post" action="{{route('admin.pages.postUpdate', $page->id)}}" enctype="multipart/form-data">
+    <form id="form_update_page" style="max-width: 768px;" method="post" action="{{route('admin.pages.postUpdate', $page->id)}}" enctype="multipart/form-data">
         <div class="admin-content-title">
             <a href="{{route('admin.pages')}}" class="btn btn-outline-light"><i class="fa fa-arrow-left me-2"></i>Pages</a>
             <h1 class="text-center">Update Page</h1>
@@ -69,15 +69,21 @@
             <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
+{{--        <div class="mb-3">--}}
+{{--            <label for="photo_content" class="form-label">Content</label>--}}
+{{--            <textarea type="text" name="content" class="form-control" rows="5" placeholder="Content" id="photo_content" >{{old('content', $page->content[$lang] ?? '')}}</textarea>--}}
+{{--            @error('content')--}}
+{{--            <div class="text-danger">{{ $message }}</div>--}}
+{{--            @enderror--}}
+{{--        </div>--}}
         <div class="mb-3">
             <label for="photo_content" class="form-label">Content</label>
-            <textarea type="text" name="content" class="form-control" rows="5" placeholder="Content" id="photo_content" >{{old('content', $page->content[$lang] ?? '')}}</textarea>
+            <textarea name="content" id="photo_content">{{old('content', $page->content[$lang] ?? '')}}</textarea>
             @error('content')
             <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
 
-        <textarea id="tiny"></textarea>
 
         <div class="mb-3 mt-3">
             <label for="page_image" class="form-label">Image (Dimensions: min 96px, max 1920px, size: max 15mB.)</label>
@@ -129,7 +135,7 @@
 @push('body_js')
     <script>
         window.addEventListener('load', ()=>{
-            tinymce.init({ selector: '#tiny' });
+            tinymce.init({ selector: '#photo_content' });
 
             async function fileToBase64(file) {
                 let b64 = await new Promise((resolve) => {
@@ -186,6 +192,11 @@
             del_imgs.addEventListener('click', ()=>{
                 imgsInp.value = null;
                 show_images.innerHTML = '';
+            });
+
+            let form_update_page = document.getElementById('form_update_page');
+            form_update_page.addEventListener('submit', ()=>{
+                document.getElementsByName('content')[0].innerHTML = tinymce.get('photo_content').getContent();
             });
         });
     </script>

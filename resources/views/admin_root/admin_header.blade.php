@@ -12,9 +12,14 @@
 
     <div class="pe-2">
         <div class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Account
-            </button>
+            <div class="dropdown-toggle1" style="cursor: pointer; user-select: none;" data-bs-toggle="dropdown" aria-expanded="false">
+                @if(auth()->user()->photo)
+                    <div style="background-image: url('{{asset('storage/' . auth()->user()->photo)}}');
+                     background-size: cover; background-position: center; width: 38px;height: 38px;border-radius: 50%;"></div>
+                @else
+                    <div style="width: 38px;height: 38px; border-radius: 50%;background-color: var(--c);color:var(--bg);display: flex;align-items: center;justify-content: center;"><i class="fa fa-2x fa-user"></i></div>
+                @endif
+            </div>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="{{route('admin.account')}}">Edit Account</a></li>
                 <li><a class="dropdown-item" href="{{route('admin.logout')}}"><i class="fa fa-sign-out me-2"></i>Logout</a></li>

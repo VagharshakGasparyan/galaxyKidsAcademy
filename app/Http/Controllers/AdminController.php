@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\FService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -53,15 +55,31 @@ class AdminController extends Controller
     }
     public function accountPostUpdate(Request $request)
     {
-        $user = Auth::user();
+        $user = auth()->user();
         $request->validate([
             'name' => 'required|min:2',
             'email' => 'required|email|min:6|unique:users,email,' . $user->id,
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:15000|dimensions:min_width=48,min_height=48,max_width=1920,max_height=1920',
         ]);
+
+        $photo = null;
+        if($request->files->get('photo')){
+            $src_filePath = (new FService())->fileUpload($request->files->get('photo'), 'users');
+            $filePath = $src_filePath['filePath'];
+            $photo = $filePath;
+            if($user->photo){
+                Storage::disk('public')->delete($user->photo);
+            }
+        }elseif ($request->has('old_photo')){
+            $photo = $user->photo;
+        }elseif($user->photo){
+            Storage::disk('public')->delete($user->photo);
+        }
 
         $user->update([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
+            'photo' => $photo,
         ]);
 
         return back();

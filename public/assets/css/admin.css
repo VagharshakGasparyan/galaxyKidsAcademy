@@ -42,11 +42,17 @@ body {
     padding: 10px;
     overflow: auto;
     margin-left: 0;
-    transition: margin-left 300ms;
+    background-color: var(--bg);
+    z-index: 1;
+    /*transition: margin-left 300ms;*/
 }
 
 .admin-sidebar-hide {
-    margin-left: -250px;
+    margin-left: -240px;
+}
+.admin-sidebar-hide:hover{
+    margin-left: 0;
+    margin-right: -240px;
 }
 
 .admin-content {

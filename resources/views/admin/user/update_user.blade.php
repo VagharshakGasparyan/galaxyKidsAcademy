@@ -68,7 +68,6 @@
                 <input type="file" name="photo" class="form-control" id="user_photo" accept="image/jpeg,image/png" placeholder="Photo">
                 <button type="button" class="btn btn-close input-close" id="del_img"></button>
             </div>
-
             @error('photo')
             <div style="color: red;">{{ $message }}</div>
             @enderror

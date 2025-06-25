@@ -1,108 +1,136 @@
 @extends('admin_root.admin_root')
 @section('title', 'Update Page')
 @section('content')
-    <h1 style="text-align: center">Update Page</h1>
-    <form style="width: 512px;margin: 0 auto;display: flex;flex-direction: column;" method="post" action="{{route('admin.pages.postUpdate', $page->id)}}" enctype="multipart/form-data">
+    <form style="max-width: 768px;" method="post" action="{{route('admin.pages.postUpdate', $page->id)}}" enctype="multipart/form-data">
+        <div class="admin-content-title">
+            <a href="{{route('admin.pages')}}" class="btn btn-outline-light"><i class="fa fa-arrow-left me-2"></i>Pages</a>
+            <h1 class="text-center">Update Page</h1>
+        </div>
         @csrf
-        <div style="display: flex; justify-content: flex-end">
+        <div style="display: flex; justify-content: flex-end;align-items: center;">
             <div style="margin-right: 10px;">Choose language </div>
-            <select name="lang">
+            <select class="form-select" style="width: unset" name="lang">
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <option value="{{$localeCode}}" @if($localeCode == $lang) selected @endif>{{$properties['name']}}</option>
                 @endforeach
             </select>
         </div>
-        <label><input type="checkbox" name="enabled" @if($page->enabled) checked @endif> Enabled</label>
-        @error('enabled')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
         <hr style="width: 100%">
-        <label>Slug * (Page Link, can be path or path1/path2)</label>
-        <input type="text" name="slug" placeholder="Slug" required value="{{old('slug', $page->slug)}}">
-        @error('slug')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <hr style="width: 100%">
-        <label>Name * (need for Admin)</label>
-        <input type="text" name="name" placeholder="Name" required value="{{old('name', $page->name)}}">
-        @error('name')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <hr style="width: 100%">
-        <label>Page Type</label>
-        <select name="type">
-            <option value="page" @if(old('type', $page->type) == 'page') selected @endif>Page</option>
-        </select>
-        @error('type')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <hr style="width: 100%">
-        <label>Big Title</label>
-        <input type="text" name="big_title" placeholder="Big Title" value="{{old('big_title', $page->big_title[$lang] ?? '')}}">
-        @error('big_title')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <hr style="width: 100%">
-        <label>Medium Title</label>
-        <input type="text" name="medium_title" placeholder="Medium Title" value="{{old('medium_title', $page->medium_title[$lang] ?? '')}}">
-        @error('medium_title')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <hr style="width: 100%">
-        <label>Small Title</label>
-        <input type="text" name="small_title" placeholder="Small Title" value="{{old('small_title', $page->small_title[$lang] ?? '')}}">
-        @error('small_title')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <hr style="width: 100%">
-        <label>Content</label>
-        <textarea style="width: 100%;min-width: 100%;max-width: 100%" name="content" rows="7"
-                  placeholder="Content">{{old('content', $page->content[$lang] ?? '')}}</textarea>
-        @error('content')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <hr style="width: 100%">
-        <label>Image (Dimensions: min 96px, max 1920px, size: max 15mB.)</label>
-        <input type="file" name="image" accept="image/jpeg,image/png" placeholder="Image">
-        @error('image')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <button type="button" style="width: 20px;" id="del_img">&times;</button>
-        <div id="show_image">
-            @if($page->image)
-                <input type="hidden" name="old_image" value="{{$page->image}}">
-                <img src="{{asset('storage/' . $page->image)}}" alt="image" style="width: 100%">
-            @endif
+        <div class="form-check mb-3">
+            <input class="form-check-input" name="enabled" type="checkbox" value="" id="page_enabled" @if($page->enabled) checked @endif>
+            <label class="form-check-label" for="page_enabled">
+                Enabled
+            </label>
+            @error('enabled')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
-        <hr style="width: 100%">
-        <label>Images (Dimensions: min 96px, max 1920px, size: max 15mB.)</label>
-        <input type="file" multiple name="images[]" accept="image/jpeg,image/png" placeholder="Images">
-        @error('images')
-        <div style="color: red;">{{ $message }}</div>
-        @enderror
-        <div>
-            @foreach($page->images as $imageIndex => $imageItem)
-                <div style="display: inline-block; position: relative;width: 32%">
-                    <input type="hidden" name="old_images[{{$imageIndex}}]" value="{{$imageItem}}">
-                    <img src="{{asset('storage/' . $imageItem)}}" alt="imageItem" style="width: 100%">
-                    <input type="checkbox" name="old_images_checked[{{$imageIndex}}]" style="width: 20px;height: 20px;position: absolute;top:0;right: 0;" checked>
-                </div>
-            @endforeach
+        <div class="mb-3">
+            <label for="page_slug" class="form-label">Slug * (Page Link, can be path or path1/path2)</label>
+            <input type="text" name="slug" class="form-control" placeholder="Slug" id="page_slug" value="{{old('slug', $page->slug)}}" required>
+            @error('slug')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
-        <button type="button" style="width: 20px;" id="del_imgs">&times;</button>
-        <div id="show_images"></div>
+        <div class="mb-3">
+            <label for="page_name" class="form-label">Name * (need for Admin)</label>
+            <input type="text" name="name" class="form-control" placeholder="Slug" id="page_name" value="{{old('name', $page->name)}}" required>
+            @error('name')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="page_type" class="form-label">Page Type</label>
+            <select name="type" class="form-select" id="page_type">
+                <option value="page" @if(old('type', $page->type) == 'page') selected @endif>Page</option>
+            </select>
+            @error('type')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="page_big_title" class="form-label">Big Title</label>
+            <input type="text" name="big_title" class="form-control" placeholder="Big Title" id="page_big_title" value="{{old('big_title', $page->big_title[$lang] ?? '')}}">
+            @error('big_title')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="page_medium_title" class="form-label">Medium Title</label>
+            <input type="text" name="medium_title" class="form-control" placeholder="Medium Title" id="page_medium_title" value="{{old('medium_title', $page->medium_title[$lang] ?? '')}}">
+            @error('medium_title')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="page_small_title" class="form-label">Small Title</label>
+            <input type="text" name="small_title" class="form-control" placeholder="Small Title" id="page_small_title" value="{{old('small_title', $page->small_title[$lang] ?? '')}}">
+            @error('small_title')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="photo_content" class="form-label">Content</label>
+            <textarea type="text" name="content" class="form-control" rows="5" placeholder="Content" id="photo_content" >{{old('content', $page->content[$lang] ?? '')}}</textarea>
+            @error('content')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
 
-        <button type="submit" style="margin-top: 25px;">Update</button>
+        <textarea id="tiny"></textarea>
+
+        <div class="mb-3 mt-3">
+            <label for="page_image" class="form-label">Image (Dimensions: min 96px, max 1920px, size: max 15mB.)</label>
+            <div class="position-relative">
+                <input type="file" name="image" class="form-control" id="page_image" accept="image/jpeg,image/png" placeholder="Image">
+                <button type="button" class="btn btn-close input-close" id="del_img"></button>
+            </div>
+            @error('image')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+            <div class="mt-2" id="show_image">
+                @if($page->image)
+                    <input type="hidden" name="old_image" value="{{$page->image}}">
+                    <img src="{{asset('storage/' . $page->image)}}" alt="image" style="max-width: 100%">
+                @endif
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="page_images" class="form-label">Images (Dimensions: min 96px, max 1920px, size: max 15mB.)</label>
+            <div class="position-relative">
+                <input type="file" multiple name="images[]" class="form-control" id="page_images" accept="image/jpeg,image/png" placeholder="Images">
+                <button type="button" class="btn btn-close input-close" id="del_imgs"></button>
+            </div>
+            @error('images')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+            <div class="row align-items-center">
+                @foreach($page->images as $imageIndex => $imageItem)
+                    <div class="col-lg-4 col-md-6 col-sm-12 position-relative">
+                        <input type="hidden" name="old_images[{{$imageIndex}}]" value="{{$imageItem}}">
+                        <img src="{{asset('storage/' . $imageItem)}}" alt="imageItem" style="padding: 15px;max-width: 100%">
+                        <input type="checkbox" name="old_images_checked[{{$imageIndex}}]" style="width: 25px;height: 25px;position: absolute;top:5px;right: 5px;" checked>
+                    </div>
+                @endforeach
+            </div>
+            <div class="row align-items-center mt-2" id="show_images"></div>
+        </div>
+
+        <div class="mt-5">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
     </form>
-    <div style="width: 512px;margin: 25px auto;">
-        <a href="{{route('admin.pages')}}">Pages</a>
-        <a href="{{route('admin.pages.create')}}">Create Page</a>
-    </div>
 
 @endsection
+@push('head_js')
+    <script src="{{asset('assets/js/tinymce.min.js')}}"></script>
+@endpush
 @push('body_js')
     <script>
         window.addEventListener('load', ()=>{
+            tinymce.init({ selector: '#tiny' });
+
             async function fileToBase64(file) {
                 let b64 = await new Promise((resolve) => {
                     const reader = new FileReader();
@@ -142,7 +170,10 @@
                 for(let file of imgsInp.files){
                     if (file.type.startsWith('image')) {
                         let img = new Image;
-                        img.style.width = '33%';
+                        img.classList.add('col-lg-4');
+                        img.classList.add('col-md-6');
+                        img.classList.add('col-sm-12');
+                        img.style.padding = '15px';
                         img.src = await fileToBase64(file);
                         show_images.appendChild(img);
                     }

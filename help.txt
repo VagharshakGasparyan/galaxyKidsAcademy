@@ -9,3 +9,5 @@ pagination design nayel
 table-i stickin avelacnel
 
 account-i photon cuyc tal, update-um photo-n avelacnel
+
+left menu-i header_bar-@ dzel

@@ -15,6 +15,8 @@ body {
     flex-direction: column;
     margin: 0;
     min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
 }
 
 .admin-header {
@@ -32,7 +34,7 @@ body {
 .admin-main {
     flex: 1;
     display: flex;
-    max-height: 100vh;
+    max-height: calc(100vh - 100px);
 }
 
 .admin-sidebar {
@@ -112,6 +114,8 @@ body {
 .my_table {
     border-collapse: collapse;
     width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 .my_table th {
@@ -130,6 +134,23 @@ body {
     width: 0;
     white-space: nowrap;
 }
+.sticky-column {
+    position: sticky;
+    right: -10px;
+    margin-left: 15px;
+    background-color: var(--bg1);
+    z-index: 9;
+}
+.sticky-column:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -10px;
+    bottom: 0;
+    width: 10px;
+    background: linear-gradient(to right, #0001, #000f);
+    pointer-events: none;
+}
 
 .input-eye, .input-close {
     position: absolute;
@@ -139,3 +160,93 @@ body {
     color: var(--bg1);
     cursor: pointer;
 }
+
+.by-locales{
+    display: flex;
+}
+.by-locales > :first-child{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    background-color: var(--c);
+    color: var(--bg1);
+}
+.by-locales > :last-child{
+    flex: 1;
+    border: 1px solid var(--c);
+    padding: 0 5px;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+/*--------pagination-------------*/
+.pagination-prev-next-on{
+    border-radius: 5px;
+    color: var(--c);
+    text-decoration: none;
+    padding: 5px;
+    min-width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pagination-prev-next-on:hover{
+    text-decoration: none;
+    color: var(--bg);
+    background-color: var(--c);
+}
+.pagination-prev-next-off{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    min-width: 35px;
+    color: var(--bg);
+}
+.pagination-current-on{
+    border-radius: 5px;
+    border: 3px solid var(--c0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    min-width: 35px;
+    color: var(--bg);
+    background-color: var(--c);
+}
+.pagination-current-off{
+    border-radius: 5px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    min-width: 35px;
+    color: var(--c);
+}
+.pagination-current-off:hover{
+    text-decoration: none;
+    color: var(--bg);
+    background-color: var(--c);
+}
+.pagination-tree-dot{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    min-width: 35px;
+    color: var(--c);
+}
+
+
+
+
+
+
+
+
+
+

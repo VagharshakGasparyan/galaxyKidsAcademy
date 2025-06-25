@@ -87,7 +87,6 @@
             });
             let del_img = document.getElementById('del_img');
             let show_image = document.getElementById('show_image');
-            let show_images = document.getElementById('show_images');
             let imgInp = document.querySelector('input[type="file"][name="image"]');
             imgInp.addEventListener('input', async ()=>{
                 let file = imgInp.files[0];

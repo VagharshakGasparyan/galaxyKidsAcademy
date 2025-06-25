@@ -1,35 +1,26 @@
 @if ($paginator->hasPages())
     <div>
-        <div style="display: flex;flex-wrap: wrap;align-items: center">
+        <div style="display: flex;flex-wrap: wrap;font-size: 18px;">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-                <div style="color: #999999;padding: 5px;">
-                    <span aria-hidden="true">&lsaquo;</span>
-                </div>
+                <span class="pagination-prev-next-off" aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
             @else
-                <div style="color: black;">
-                    <a style="text-decoration: none;padding: 5px;" href="{{ $paginator->previousPageUrl() }}" rel="prev">&lsaquo;</a>
-                </div>
+                <a class="pagination-prev-next-on" href="{{ $paginator->previousPageUrl() }}" rel="prev"><i class="fa fa-chevron-left"></i></a>
             @endif
 
-            {{-- Pagination Elements --}}
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <div style="color: #999;padding: 5px;"><span>{{ $element }}</span></div>
+                    <span class="pagination-tree-dot">{{ $element }}</span>
                 @endif
 
                 {{-- Array Of Links --}}
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <div style="color: black;background-color: #aaa;padding: 5px;">
-                                <span>{{ $page }}</span>
-                            </div>
+                            <span class="pagination-current-on">{{ $page }}</span>
                         @else
-                            <div style="color: #999;padding: 5px;">
-                                <a style="text-decoration: none;padding: 5px;" href="{{ $url }}">{{ $page }}</a>
-                            </div>
+                            <a class="pagination-current-off" href="{{ $url }}">{{ $page }}</a>
                         @endif
                     @endforeach
                 @endif
@@ -37,13 +28,9 @@
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
-                <div>
-                    <a style="text-decoration: none;padding: 5px;" href="{{ $paginator->nextPageUrl() }}" rel="next">&rsaquo;</a>
-                </div>
+                <a class="pagination-prev-next-on" href="{{ $paginator->nextPageUrl() }}" rel="next"><i class="fa fa-chevron-right"></i></a>
             @else
-                <div  style="color: #999999;padding: 5px;">
-                    <span>&rsaquo;</span>
-                </div>
+                <span class="pagination-prev-next-off"><i class="fa fa-chevron-right"></i></span>
             @endif
         </div>
     </div>

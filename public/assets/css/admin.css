@@ -246,6 +246,25 @@ body {
     min-width: 35px;
     color: var(--c);
 }
+.td-input{
+    width: 100%;
+    background-color: inherit;
+    color: inherit;
+    outline: none;
+    border: none;
+}
+.my-filters{
+    border: 2px solid #fff1;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+.my-filters legend{
+    display: inline-block;
+    width: max-content;
+    margin-top: -20px;
+    padding: 0 5px;
+    background-color: var(--bg1);
+}
 
 
 

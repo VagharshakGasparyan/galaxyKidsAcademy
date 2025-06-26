@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AdminPhotoController;
 use App\Http\Controllers\AdminSettingsController;
+use App\Http\Controllers\AdminTranslationController;
 use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\PageController;
 use App\Http\Middleware\AdminAuthMiddleware;
@@ -67,6 +68,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/users/show/{id}', [AdminUsersController::class, 'show'])->name('admin.users.show');
         Route::delete('/users/delete/{id}', [AdminUsersController::class, 'delete'])->name('admin.users.delete');
         //-----------------------------------Users-end------------------------------------------------------------------
+        //-----------------------------------Translations-begin---------------------------------------------------------
+        Route::get('/translations', [AdminTranslationController::class, 'index'])->name('admin.translations');
+        Route::post('/translations/save', [AdminTranslationController::class, 'save'])->name('admin.translations.save');
+        Route::post('/translations/bulk-save', [AdminTranslationController::class, 'bulkSave'])->name('admin.translations.bulk_save');
+        Route::post('/translations/put-keys', [AdminTranslationController::class, 'putKeys'])->name('admin.translations.put_keys');
+        //-----------------------------------Translations-end-----------------------------------------------------------
     });
 });
 

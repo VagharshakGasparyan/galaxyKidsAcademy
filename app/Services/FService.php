@@ -74,20 +74,21 @@ class FService
             file_put_contents(base_path('lang/base_keys.json'), "{}");
         }
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
+            $new_arr = $arr;
             $path = base_path('lang/' . $localeCode . '.json');
             $existFile = File::exists($path);
             if (!$existFile){
-                $str = count($arr) ? json_encode($arr, JSON_UNESCAPED_UNICODE) : "{}";
+                $str = count($new_arr) ? json_encode($new_arr, JSON_UNESCAPED_UNICODE) : "{}";
                 file_put_contents($path, $str);
             }else{
                 $str_tr = file_get_contents($path);
                 $arr_tr = json_decode($str_tr, true);
                 foreach ($arr_tr as $key => $value){
-                    if(array_key_exists($key, $arr)){
-                        $arr[$key] = $value;
+                    if(array_key_exists($key, $new_arr)){
+                        $new_arr[$key] = $value;
                     }
                 }
-                file_put_contents($path, json_encode($arr, JSON_UNESCAPED_UNICODE));
+                file_put_contents($path, json_encode($new_arr, JSON_UNESCAPED_UNICODE));
             }
         }
     }

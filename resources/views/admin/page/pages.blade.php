@@ -6,7 +6,40 @@
             <span></span>
             <h1 class="text-center">Pages</h1>
         </div>
-        <table class="my_table">
+        <fieldset class="my-filters mt-3">
+            <legend>Filters</legend>
+            <div class="row">
+                <div class="mb-3 col-md-12 col-lg-6 col-xl-4">
+                    <label for="filter_name" class="form-label">Name</label>
+                    <div class="position-relative">
+                        <input type="text" name="filter_name" class="form-control" placeholder="Name" id="filter_name" value="{{$name}}">
+                        <button type="button" class="btn btn-close input-close"></button>
+                    </div>
+                </div>
+                <div class="mb-3 col-md-12 col-lg-6 col-xl-4">
+                    <label for="filter_slug" class="form-label">Slug</label>
+                    <div class="position-relative">
+                        <input type="text" name="filter_slug" class="form-control" placeholder="Slug" id="filter_slug" value="{{$slug}}">
+                        <button type="button" class="btn btn-close input-close"></button>
+                    </div>
+                </div>
+                <div class="form-check mb-3 col-md-12 col-lg-6 col-xl-4">
+                    <label for="filter_enabled" class="form-label">Enabled</label>
+                    <select name="filter_enabled" class="form-select" id="filter_enabled">
+                        <option value="" >-</option>
+                        <option value="1" @if($enabled == '1') selected @endif>Yes</option>
+                        <option value="0" @if($enabled == '0') selected @endif>No</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3 col-12">
+                    <button type="button" class="btn btn-sm btn-primary me-2" id="filter_btn">Find by filters</button>
+                    <button type="button" class="btn btn-sm btn-secondary" id="filter_reset_btn">Reset filters</button>
+                </div>
+            </div>
+        </fieldset>
+        <table class="my_table mt-3">
             <thead>
                 <tr>
                     <th class="action-td">ID</th>
@@ -75,7 +108,7 @@
                     @foreach($item->content as $local => $content)
                         <div class="by-locales">
                             <div>{{$local}}</div>
-                            <div>{{$content}}</div>
+                            <div>{!! $content !!}</div>
                         </div>
                     @endforeach
                 </td>
@@ -109,6 +142,38 @@
 @endpush
 @push('body_js')
     <script>
-
+        window.addEventListener('load', ()=>{
+            let filter_name = document.getElementById('filter_name');
+            let filter_slug = document.getElementById('filter_slug');
+            let filter_enabled = document.getElementById('filter_enabled');
+            let filter_btn = document.getElementById('filter_btn');
+            let filter_reset_btn = document.getElementById('filter_reset_btn');
+            filter_btn.addEventListener('click', ()=>{
+                const url = new URL(window.location.href);
+                url.searchParams.set('name', filter_name.value);
+                url.searchParams.set('slug', filter_slug.value);
+                url.searchParams.set('enabled', filter_enabled.value);
+                window.location.href = url.toString();
+            });
+            filter_reset_btn.addEventListener('click', ()=>{
+                const url = new URL(window.location.href);
+                url.searchParams.delete('name');
+                url.searchParams.delete('slug');
+                url.searchParams.delete('enabled');
+                filter_name.value = '';
+                filter_slug.value = '';
+                filter_enabled.value = '';
+                window.location.href = url.toString();
+            });
+            document.querySelectorAll('.input-close').forEach((btn)=>{
+                btn.addEventListener('click', ()=>{
+                    let inp = btn.parentElement.querySelector('input');
+                    if(inp){
+                        inp.value = '';
+                    }
+                });
+            });
+            //--------------------------------------------------------------
+        });
     </script>
 @endpush

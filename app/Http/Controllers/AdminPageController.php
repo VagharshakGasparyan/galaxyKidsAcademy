@@ -10,10 +10,23 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AdminPageController extends Controller
 {
-    public function index(): \Illuminate\Contracts\View\View
+    public function index(Request $request): \Illuminate\Contracts\View\View
     {
-        $items = Page::orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.page.pages', compact('items'));
+        $name = $request->query('name');
+        $slug = $request->query('slug');
+        $enabled = $request->query('enabled');
+
+        $items = Page::when($name, function ($query) use ($name) {
+                return $query->where('name', 'like', '%' . $name . '%');
+            })
+            ->when($slug, function ($query) use ($slug) {
+                return $query->where('slug', 'like', '%' . $slug . '%');
+            })
+            ->when($enabled !== null, function ($query) use ($enabled) {
+                return $query->where('enabled', $enabled);
+            })->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('admin.page.pages', compact('items', 'name', 'slug', 'enabled'));
     }
 
     public function create(): \Illuminate\Contracts\View\View

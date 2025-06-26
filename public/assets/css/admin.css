@@ -121,7 +121,7 @@ body {
     border-collapse: collapse;
     width: 100%;
     max-width: 100%;
-    overflow-x: auto;
+    /*overflow-x: auto;*/
 }
 
 .my_table th {

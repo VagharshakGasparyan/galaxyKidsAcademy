@@ -11,10 +11,23 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AdminPhotoController extends Controller
 {
-    public function index(): \Illuminate\Contracts\View\View
+    public function index(Request $request): \Illuminate\Contracts\View\View
     {
-        $photos = Photo::orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.photo.photos', compact('photos'));
+        $filter_title = $request->query('title');
+        $filter_description = $request->query('description');
+        $filter_enabled = $request->query('enabled');
+
+
+        $photos = Photo::when($filter_enabled !== null, function ($query) use ($filter_enabled) {
+            return $query->where('enabled', $filter_enabled);
+        })->when($filter_title, function ($query) use ($filter_title) {
+//            return $query->where('title', 'like', '%' . $filter_title . '%');
+            return $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($filter_title) . '%']);
+        })->when($filter_description, function ($query) use ($filter_description) {
+//            return $query->where('description', 'like', '%' . $filter_description . '%');
+            return $query->whereRaw('LOWER(description) LIKE ?', ['%' . strtolower($filter_description) . '%']);
+        })->orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.photo.photos', compact('photos', 'filter_title', 'filter_description', 'filter_enabled'));
     }
 
     public function create(): \Illuminate\Contracts\View\View

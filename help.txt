@@ -4,8 +4,7 @@
 +left menu-i header_bar-@ dzel
 +avelacnel pages-um tiny text grelu tegh
 +avelacnel tarkmanutyunner@ poxelu hnaravorutyun
-
-adminki ejerum avelacnel filtrner
++adminki ejerum avelacnel filtrner
 
 avelacnel fronti ejer@
 

@@ -187,6 +187,8 @@ ul {
     background-color: var(--primary-color-light);
 }
 
+/* Container sections */
+
 section {
     padding: 20px 0; /* Add padding above and below each section */
 }
@@ -278,5 +280,5 @@ section p {
 /* Adjustments for headers to align with the lines */
 section h1,
 section h2 {
-    padding: 10px 0;
+     padding: 10px 0;
 }

@@ -1,0 +1,29 @@
+/* variables.css */
+:root {
+  /* --main-color: #311432; */
+  /* --light-violet:#be4cc2; */
+  /* --main-reserve-color: #1f1a45; */
+  --main-color: #1e2d59;
+  --main-color-lt: #3f5085;
+  --yellow: #f6dc09;
+  --yellow-light: #f8f383;  
+  --white: #fff;
+  --black: #000;
+  --paragraph-color: #3b3d41;
+  --paragraph-color-light: #ebecf0;
+  --headers-color: #7d7e81;
+  --link-hover-focus: #3498db;
+  --box-shadow: #ccc;
+  --box-shadow-light: rgba(0, 0, 0, 0.1);
+  --text-shadow: rgba(0, 0, 0, 0.5);
+  --text-shadow-light: rgba(0, 0, 0, 0.3);
+  --bg-white: #f7f7f7;
+
+  /* Language switcher */
+  --primary-color: #1f1a45;
+  --secondary-color: #1c8ad4;
+  --secondary-color-light: #70bee6;
+  --text-color: #3b3d41;
+  --text-light-color: #ecf0f1;
+  --transition-speed: 0.3s;
+}

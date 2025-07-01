@@ -238,12 +238,12 @@ section p {
 }
 
 /* Specific styling for the very first section (About Us) to not have a top border */
-.about-us-section {
+.admission-section {
     padding-top: 0;
     margin-top: 0;
 }
 /* Ensure the first section also has a bottom divider */
-.about-us-section.section-divider {
+.admission-section.section-divider {
     border-top: none;
 }
 
@@ -256,13 +256,21 @@ section p {
     padding-bottom: 40px; /* Space below the button container */
 }
 
+@media (max-width: 48em) {
+    .buttons-container {
+        font-size: 14px;
+        flex-direction: column;
+    }
+}
+
 /* Button Base Styles */
 .button {
     display: inline-block;
     padding: 12px 25px; /* Adjust padding for button size */
     border-radius: 5px; /* Slightly rounded corners */
-    font-size: 16px; 
+    font-size: 16px;
     text-transform: uppercase;
+    text-align: center;
     cursor: pointer;
     border: none; /* Remove default button border */
     transition: background-color var(--transition-speed),

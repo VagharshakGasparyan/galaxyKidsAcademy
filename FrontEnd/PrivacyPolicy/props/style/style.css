@@ -105,11 +105,7 @@ a:focus {
     color: var(--secondary-color);
 }
 
-/* Lists */
-ul {
-    list-style: none;
-    padding-left: 0;
-}
+
 
 /* Container & Layout */
 .container {
@@ -189,13 +185,26 @@ ul {
 
 /* Container sections */
 
-section {
-    padding: 20px 0; /* Add padding above and below each section */
+section h5 {
+    font-family: "Montserrat", Arial, sans-serif;
 }
-
 section p {
     margin-bottom: 15px; /* Spacing between paragraphs */
     line-height: 1.6; /* Improve readability */
+}
+
+/* List styling inside privacy policy section */
+.policy-list {
+    list-style-type: disc; /* Default bullet style */
+    margin-left: 20px; /* Indent bullets */
+    margin-bottom: 15px;
+    line-height: 1.6; /* Better readability */
+    color: var(--text-color);
+    font-size: 10px; /* Match your .body-font */
+}
+
+.policy-list li {
+    margin-bottom: 5px; /* Small space between list items */
 }
 
 /* Utility classes (optional, useful) */
@@ -225,36 +234,6 @@ section p {
 /* Box shadow helper */
 .box-shadow {
     box-shadow: 0 2px 4px var(--box-shadow-light);
-}
-
-/* --- NEW STYLES BELOW --- */
-
-/* Section Dividers (Grey Lines) */
-.section-divider {
-    border-bottom: 1px solid var(--box-shadow); /* Using box-shadow variable for grey line */
-    margin-top: 20px; /* Space above the line */
-    margin-bottom: 20px; /* Space below the line */
-    padding-top: 20px; /* Ensure space before the line starts for the next section */
-}
-
-/* Specific styling for the very first section (About Us) to not have a top border */
-.parents-corner-section {
-    padding-top: 0;
-    margin-top: 0;
-}
-/* Ensure the first section also has a bottom divider */
-.parents-corner-section.section-divider {
-    border-top: none;
-}
-
-/* Communications Container */
-.communications {
-    padding-left: 30px;
-}
-
-.communications h5 {
-    padding: 10px 0;
-    font-family: "Montserrat", Arial, sans-serif;
 }
 
 /* Buttons Container */

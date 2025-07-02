@@ -1,0 +1,25 @@
+/* variables.css */
+:root {
+    /* --main-color: #311432; */
+    /* --light-violet:#be4cc2; */
+    /* --main-reserve-color: #1f1a45; */    
+    --yellow: #f6dc09;
+    --yellow-light: #f8f383;
+    --white: #fff;
+    --black: #000;
+    --headers-color: #7d7e81;
+    --box-shadow: #ccc;
+    --box-shadow-light: rgba(0, 0, 0, 0.1);
+    --text-shadow: rgba(0, 0, 0, 0.5);
+    --text-shadow-light: rgba(0, 0, 0, 0.3);
+    --background-white: #f7f7f7;
+
+    /* Main colors */
+    --primary-color: #1f1a45;
+    --primary-color-light: #3f5085;
+    --secondary-color: #1c8ad4;
+    --secondary-color-light: #70bee6;
+    --text-color: #3b3d41;
+    --text-light-color: #ecf0f1;
+    --transition-speed: 0.3s;
+}

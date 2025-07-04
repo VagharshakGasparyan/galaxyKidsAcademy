@@ -722,7 +722,7 @@ header {
 .footer-links a {
     color: var(--paragraph-color-light);
     text-decoration: none;
-    font-size: 0.95em;
+    font-size: 1.1em;
     transition: color 0.3s ease;
 }
 
@@ -1822,14 +1822,13 @@ section h2 {
 
 /* Left column (map + info) */
 .left-column {
-  
     flex: 1 1 40%;
     display: flex;
     flex-direction: column;
     gap: 20px;
     background-color: var(--text-light-color);
     padding: 10px;
-   line-height: 1.5;
+    line-height: 1.5;
 }
 
 .map-box iframe {
@@ -1866,7 +1865,6 @@ section h2 {
     gap: 20px;
     padding: 10px;
     background-color: var(--text-light-color);
-   
 }
 
 .form-box {
@@ -1908,10 +1906,9 @@ section h2 {
 
 .form-box input::placeholder,
 .form-box textarea::placeholder {
-  font-family: var(--font-family-main);
-  font-size: 14px;
+    font-family: var(--font-family-main);
+    font-size: 14px;
 }
-
 
 .form-box textarea {
     resize: vertical;
@@ -1940,7 +1937,7 @@ section h2 {
     border-radius: 4px;
     font-size: 14px;
     text-align: justify;
-   line-height: 1.5;
+    line-height: 1.5;
 }
 .text-box h2 {
     padding-bottom: 15px;
@@ -1960,3 +1957,22 @@ section h2 {
 }
 
 /* Contact us page End */
+
+/* ============================================ */
+
+/* Privacy policy page Start */
+
+/* List styling inside privacy policy section */
+.policy-list {
+    list-style-type: disc; /* Default bullet style */
+    margin-left: 20px; /* Indent bullets */
+    margin-bottom: 15px;
+    line-height: 1.6; /* Better readability */
+    color: var(--text-color);
+    font-size: 13px; /* Match your .body-font */
+}
+
+.policy-list li {
+    margin-bottom: 5px; /* Small space between list items */
+}
+/* Privacy policy page End */

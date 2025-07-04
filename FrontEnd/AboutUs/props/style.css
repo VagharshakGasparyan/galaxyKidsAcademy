@@ -38,7 +38,6 @@ h5,
 .h5,
 h6,
 .h6 {
-    color: var(--headers-color);
     text-transform: capitalize;
     font-weight: 400;
     font-style: normal;
@@ -123,6 +122,8 @@ ul {
     background-color: var(--background-white);
 }
 
+
+
 /* Hero Section (Header) */
 .hero-section {
     position: relative;
@@ -177,7 +178,6 @@ ul {
     padding: 12px 25px;
     text-decoration: none;
     border-radius: 5px;
-    /* font-weight: bold; */
     transition: background-color 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -280,3 +280,4 @@ section h1,
 section h2 {
     padding: 10px 0;
 }
+

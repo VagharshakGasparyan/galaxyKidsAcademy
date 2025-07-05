@@ -1,7 +1,5 @@
 /* variables.css */
 :root {
-    /* --main-color: #311432; */
-    /* --light-violet:#be4cc2; */
     /* --main-reserve-color: #1f1a45; */
     --main-color: #1e2d59;
     --main-color-lt: #3f5085;
@@ -31,5 +29,19 @@
 
     /* Font styling */
     --font-family-dancing: "Dancing Script", cursive;
-    --font-family-main: "Times New Roman", Times, serif;
+    --font-family-main: "Montserrat", sans-serif;
+}
+
+@font-face {
+    font-family: "Dancing Script";
+    src: url("../../fonts/DancingScript-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../../fonts/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
 }

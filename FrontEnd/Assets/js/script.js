@@ -78,6 +78,7 @@ function initialize() {
 document.addEventListener("DOMContentLoaded", initialize);
 window.addEventListener("resize", initialize);
 
+// Lanaguage switcher
 document.addEventListener("DOMContentLoaded", function () {
     const languageSwitcher = document.querySelector(".language-switcher");
     const languageTrigger = document.querySelector(".language-trigger");
@@ -142,11 +143,20 @@ document.addEventListener("DOMContentLoaded", function () {
             am: "am",
         };
 
-        // Remove all flag classes
-        languageFlag.classList.remove("flag-icon-us", "flag-icon-am");
+        // Remove all flag-related classes
+        languageFlag.classList.remove(
+            "flag-icon-us",
+            "flag-icon-am",
+            "fi-us",
+            "fi-am"
+        );
 
-        // Add the new flag class
-        languageFlag.classList.add(`flag-icon-${flagMap[selectedLang]}`);
+        // Add the new flag classes
+        languageFlag.classList.add(
+            `flag-icon-${flagMap[selectedLang]}`,
+            `fi`,
+            `fi-${flagMap[selectedLang]}`
+        );
     }
 });
 

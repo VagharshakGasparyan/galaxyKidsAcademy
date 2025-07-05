@@ -246,7 +246,6 @@ header {
     padding: 30px 0;
     box-shadow: 3px 3px 3px var(--box-shadow);
     z-index: 99;
-    /* position: fixed; */
     top: 0;
     left: 0;
     width: 100%;
@@ -580,13 +579,13 @@ header {
 }
 
 .language-trigger:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--box-shadow-light);
 }
 
 .language-trigger .flag-icon {
     width: 24px;
     height: 18px;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 1px var(--box-shadow-light);
 }
 
 .dropdown-arrow {
@@ -608,7 +607,7 @@ header {
     right: 0;
     background-color: var(--white);
     border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px var(--box-shadow-light);
     width: 180px;
     opacity: 0;
     visibility: hidden;
@@ -1600,11 +1599,7 @@ header {
 
 /* Home Page END */
 
-/* =========================== */
-
 /* About us page Start */
-
-/* ====================================================== */
 section {
     padding: 20px 0; /* Add padding above and below each section */
 }
@@ -1697,8 +1692,6 @@ section h2 {
 
 /* About us,Admissions,Tuitions and Fees,Parents Corner,Our Programs pages END */
 
-/* ====================================================== */
-
 /* Gallery page Start */
 
 /* Specific styling for the very first section (Gallery) to not have a top border */
@@ -1771,12 +1764,9 @@ section h2 {
 }
 
 /* Gallery page End */
-/* ================================================ */
 
 /* Contact us page Start */
-
 /* Container & Layout */
-
 .contact-container {
     display: flex;
     flex-wrap: wrap;
@@ -1924,10 +1914,7 @@ section h2 {
 
 /* Contact us page End */
 
-/* ============================================ */
-
 /* Privacy policy page Start */
-
 /* List styling inside privacy policy section */
 .policy-list {
     list-style-type: disc;

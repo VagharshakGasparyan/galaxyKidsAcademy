@@ -31,7 +31,15 @@
                         <input type="text" name="Key" class="form-control" placeholder="Translation" id="filter_val" value="{{$req_val}}">
                         <button type="button" class="btn btn-close input-close"></button>
                     </div>
-
+                </div>
+                <div class="mb-3 col-md-12 col-lg-6">
+                    <label for="filter_keys_at" class="form-label">Keys at:</label>
+                    <select class="form-select" name="filter_keys_at" id="filter_keys_at">
+                        <option value="">-</option>
+                        @foreach($trKeyGroups as $trKeyGroupValue => $trKeyGroupName)
+                            <option value="{{$trKeyGroupValue}}" @if($req_keys_at == $trKeyGroupValue) selected @endif>{{$trKeyGroupName}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3 col-12">
                     <button type="button" class="btn btn-sm btn-primary me-2" id="filter_btn">Find by filters</button>
@@ -118,18 +126,21 @@
                 // Or with reloading:
                 window.location.href = url.toString();
             });
+            let filter_keys_at = document.getElementById('filter_keys_at');
             let filter_key = document.getElementById('filter_key');
             let filter_val = document.getElementById('filter_val');
             let filter_btn = document.getElementById('filter_btn');
             let filter_reset_btn = document.getElementById('filter_reset_btn');
             filter_btn.addEventListener('click', ()=>{
                 const url = new URL(window.location.href);
-                url.searchParams.set('key', filter_key.value);
-                url.searchParams.set('val', filter_val.value);
+                filter_keys_at.value ? url.searchParams.set('keys_at', filter_keys_at.value) : url.searchParams.delete('keys_at');
+                filter_key.value ? url.searchParams.set('key', filter_key.value) : url.searchParams.delete('key');
+                filter_val.value ? url.searchParams.set('val', filter_val.value) : url.searchParams.delete('val');
                 window.location.href = url.toString();
             });
             filter_reset_btn.addEventListener('click', ()=>{
                 const url = new URL(window.location.href);
+                url.searchParams.delete('keys_at');
                 url.searchParams.delete('key');
                 url.searchParams.delete('val');
                 filter_key.value = '';

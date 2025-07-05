@@ -10,7 +10,22 @@ class AdminTranslationController extends Controller
 {
     public function index(Request $request)
     {
+        $trKeyGroups = [
+            'header.' => 'Header',
+            'footer.' => 'Footer',
+            'home.' => 'Home',
+            'about-us.' => 'About us',
+            'admissions.' => 'Admissions',
+            'contact-us.' => 'Contact Us',
+            'gallery.' => 'Gallery',
+            'our-programs.' => 'Our Programs',
+            'parents-corner.' => 'Parents Corner',
+            'privacy-policy.' => 'Privacy Policy',
+            'tuitions-fees.' => 'Tuition\'s Fees',
+        ];
+
         $lang = $request->get('lang') ?? app()->getLocale();
+        $req_keys_at = $request->get('keys_at');
         $req_key = $request->get('key');
         $req_val = $request->get('val');
         if (!app('laravellocalization')->checkLocaleInSupportedLocales($lang)) {
@@ -39,7 +54,17 @@ class AdminTranslationController extends Controller
         }
         $translations = file_get_contents($path);
         $translations = json_decode($translations, true);
-        if($req_key && !$req_val){
+
+        if($req_keys_at){
+            $newTr = [];
+            foreach($translations as $key => $value){
+                if (str_starts_with($key, $req_keys_at)) {
+                    $newTr[$key] = $value;
+                }
+            }
+            $translations = $newTr;
+        }
+        if($req_key){
             $newTr = [];
             foreach($translations as $key => $value){
                 if (str_contains(strtolower($key) , strtolower($req_key))) {
@@ -48,7 +73,7 @@ class AdminTranslationController extends Controller
             }
             $translations = $newTr;
         }
-        if($req_val && !$req_key){
+        if($req_val){
             $newTr = [];
             foreach($translations as $key => $value){
                 if (str_contains(strtolower($value), strtolower($req_val))) {
@@ -57,17 +82,8 @@ class AdminTranslationController extends Controller
             }
             $translations = $newTr;
         }
-        if($req_val && $req_key){
-            $newTr = [];
-            foreach($translations as $key => $value){
-                if (str_contains(strtolower($key) , strtolower($req_key)) && str_contains(strtolower($value), strtolower($req_val))) {
-                    $newTr[$key] = $value;
-                }
-            }
-            $translations = $newTr;
-        }
 
-        return view('admin.translation.translations', compact('lang', 'translations', 'req_key', 'req_val'));
+        return view('admin.translation.translations', compact('lang', 'translations', 'req_key', 'req_val', 'req_keys_at', 'trKeyGroups'));
     }
 
     public function save(Request $request)

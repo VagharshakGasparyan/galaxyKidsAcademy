@@ -1,5 +1,5 @@
 @extends('root.root')
-@section('title', __('Gallery'))
+@section('title', __('gallery.Gallery'))
 @section('content')
     <h1 style="text-align: center">{{__('Gallery')}}</h1>
     <div style="width: 1024px;margin: 25px auto;">
@@ -23,6 +23,6 @@
 @endsection
 @push('body_js')
     <script>
-        // console.log('URA');
+
     </script>
 @endpush

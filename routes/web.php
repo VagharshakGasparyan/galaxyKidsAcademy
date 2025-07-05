@@ -85,10 +85,15 @@ Route::group([
 ], function () {
     Route::get('/', [PageController::class, 'home'])->name('home');
     Route::get('/gallery', [PageController::class, 'gallery'])->name('gallery');
-
+    Route::get('/about-us', [PageController::class, 'aboutUs'])->name('about_us');
+    Route::get('/admissions', [PageController::class, 'admissions'])->name('admissions');
+    Route::get('/contact-us', [PageController::class, 'contactUs'])->name('contact_us');
+    Route::get('/our-programs', [PageController::class, 'ourPrograms'])->name('our_programs');
+    Route::get('/parents-corner', [PageController::class, 'parentsCorner'])->name('parents_corner');
+    Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy_policy');
+    Route::get('/tuitions-fees', [PageController::class, 'tuitionsFees'])->name('tuitions_fees');
 
     Route::get('/{slug}/{subs?}', [PageController::class, 'page'])->name('page');
 });
-
 
 

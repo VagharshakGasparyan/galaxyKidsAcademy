@@ -125,9 +125,9 @@ ul {
 }
 .container-wrap {
     width: 100%;
-    max-width: 760px; /* Adjust based on typical content width, inferred from screenshot */
-    margin: 0 auto; /* Center the container */
-    padding: 20px; /* Add some padding around the content */
+    max-width: 760px; 
+    margin: 0 auto; 
+    padding: 20px;
     background-color: var(--background-white);
 }
 
@@ -234,7 +234,6 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    /* background-color: var(--main-color); */
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s;
@@ -679,17 +678,17 @@ header {
 .main-footer {
     background-color: var(--main-color);
     color: var(--white);
-    padding: 60px 20px; /* Ample padding top/bottom */
+    padding: 60px 20px; 
     border-top: 1px solid var(--yellow);
 }
 
 .footer-container {
     display: flex;
-    justify-content: space-between; /* Distribute columns evenly with space */
-    flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
-    max-width: 1200px; /* Max width for the footer content */
-    margin: 0 auto; /* Center the footer content */
-    gap: 30px; /* Gap between columns */
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    gap: 30px; 
 }
 
 .footer-column {
@@ -702,7 +701,7 @@ header {
     font-family: var(--font-family-main);
     font-weight: normal;
     font-size: 1.2em;
-    color: var(--yellow); /* Yellow color for titles */
+    color: var(--yellow); 
     margin-bottom: 20px;
     font-weight: bold;
     text-transform: uppercase;
@@ -727,13 +726,13 @@ header {
 }
 
 .footer-links a:hover {
-    color: var(--yellow); /* Yellow on hover */
+    color: var(--yellow); 
 }
 
 .footer-social {
     display: flex;
-    justify-content: flex-end; /* Align social icons to the right on desktop */
-    align-items: flex-start; /* Align to the top of the column */
+    justify-content: flex-end; 
+    align-items: flex-start; 
     flex-grow: 0; /* Prevent this column from growing too much */
     flex-shrink: 0; /* Prevent this column from shrinking too much */
     flex-basis: auto; /* Take natural width for icons */
@@ -741,14 +740,14 @@ header {
 }
 
 .social-icon {
-    color: var(--yellow); /* Yellow for icons */
+    color: var(--yellow); 
     font-size: 2em; /* Large icon size */
     margin-left: 20px; /* Space between icons */
     transition: color 0.3s ease;
 }
 
 .social-icon:hover {
-    color: var(--white); /* White on hover */
+    color: var(--white); 
 }
 
 /* Responsive Styles for Footer */
@@ -855,11 +854,12 @@ header {
 
 /* Home page Start */
 /* Hero Section (Header) */
+.hero-section-home,
 .hero-section {
     position: relative;
     width: 100%;
     height: 100vh;
-    max-height: 450px;
+    max-height: 600px;
     background-image: url("https://dta0yqvfnusiq.cloudfront.net/galax31402189/2019/10/hero-5dbb1f94e254a.jpg");
     background-position: center top;
     background-repeat: no-repeat;
@@ -873,12 +873,15 @@ header {
     overflow: hidden;
 }
 
+.hero-content-home,
 .hero-content {
+    width: 100%;
     padding: 30px 50px;
     border-radius: 8px;
     max-width: 760px; /* Limit content width */
 }
 
+.hero-content-home h1,
 .hero-content h1 {
     color: var(--white);
     font-weight: 400;
@@ -887,6 +890,7 @@ header {
     text-shadow: 2px 2px 4px var(--text-shadow);
 }
 
+.hero-content-home p,
 .hero-content p {
     color: var(--paragraph-color-light);
     font-size: 1.5em;
@@ -895,8 +899,8 @@ header {
     text-shadow: 1px 1px 3px var(--text-shadow);
 }
 
+.btn-home,
 .btn {
-    display: inline-block;
     background-color: var(--yellow-light);
     color: var(--text-color);
     padding: 12px 25px;
@@ -908,8 +912,32 @@ header {
     letter-spacing: 1px;
 }
 
-.btn:hover {
+.btn-home:hover {
     background-color: var(--yellow);
+}
+
+/* Hero Section (Header) for other pages */
+.hero-section {
+    height: 200px;
+    background-image: url("https://dta0yqvfnusiq.cloudfront.net/galax31402189/2019/10/hero-5dbb1f94e254a.jpg");
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+    padding: 30px 20px;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn:hover {
+    background-color: var(--primary-color-light);
 }
 
 /* Programs Section */
@@ -1575,6 +1603,17 @@ header {
 /* =========================== */
 
 /* About us page Start */
+
+/* ====================================================== */
+section {
+    padding: 20px 0; /* Add padding above and below each section */
+}
+
+section p {
+    margin-bottom: 15px; /* Spacing between paragraphs */
+    line-height: 1.6; /* Improve readability */
+}
+
 /* Utility classes (optional, useful) */
 .text-primary {
     color: var(--primary-color);
@@ -1891,12 +1930,12 @@ section h2 {
 
 /* List styling inside privacy policy section */
 .policy-list {
-    list-style-type: disc; 
-    margin-left: 20px; 
+    list-style-type: disc;
+    margin-left: 20px;
     margin-bottom: 15px;
-    line-height: 1.6; 
+    line-height: 1.6;
     color: var(--text-color);
-    font-size: 13px; 
+    font-size: 13px;
 }
 
 .policy-list li {

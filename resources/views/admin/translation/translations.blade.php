@@ -66,7 +66,9 @@
             @foreach($translations as $tr_key => $translation)
             <tr>
                 <td class="action-td" data-key="{{$row_index}}">{{$tr_key}}</td>
-                <td><input type="text" class="td-input" data-value="{{$row_index}}" data-tr-key="{{$tr_key}}" data-default="{{$translation}}" value="{{$translation}}"></td>
+                <td>
+                    <input type="text" class="td-input" data-value="{{$row_index}}" data-tr-key="{{$tr_key}}" data-default="{{$translation}}" value="{{$translation}}">
+                </td>
                 <td class="action-td">
                     <button type="button" data-reset="{{$row_index}}" class="btn btn-sm btn-secondary me-2">Reset</button>
                     <button type="button" data-save="{{$row_index}}" class="btn btn-sm btn-primary">Save</button>

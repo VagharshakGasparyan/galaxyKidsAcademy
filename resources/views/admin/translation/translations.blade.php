@@ -66,9 +66,10 @@
             @foreach($translations as $tr_key => $translation)
             <tr>
                 <td class="action-td" data-key="{{$row_index}}">{{$tr_key}}</td>
-                <td>
-                    <input type="text" class="td-input" data-value="{{$row_index}}" data-tr-key="{{$tr_key}}" data-default="{{$translation}}" value="{{$translation}}">
-                </td>
+{{--                <td>--}}
+{{--                    <input type="text" class="td-input" data-value="{{$row_index}}" data-tr-key="{{$tr_key}}" data-default="{{$translation}}" value="{{$translation}}">--}}
+{{--                </td>--}}
+                <td style="white-space: pre-wrap" class="td-input" contenteditable="true" data-value="{{$row_index}}" data-tr-key="{{$tr_key}}" data-default="{{$translation}}">{{$translation}}</td>
                 <td class="action-td">
                     <button type="button" data-reset="{{$row_index}}" class="btn btn-sm btn-secondary me-2">Reset</button>
                     <button type="button" data-save="{{$row_index}}" class="btn btn-sm btn-primary">Save</button>
@@ -150,7 +151,8 @@
                 reset.addEventListener('click', ()=>{
                     let inp = document.querySelector('[data-value="' + row_index + '"]');
                     if(inp){
-                        inp.value = inp.getAttribute('data-default');
+                        // inp.value = inp.getAttribute('data-default');
+                        inp.innerText = inp.getAttribute('data-default');
                     }
                 });
             });
@@ -162,7 +164,8 @@
                     let inp = document.querySelector('[data-value="' + row_index + '"]');
                     if(inp){
                         let key = inp.getAttribute('data-tr-key');
-                        let val = inp.value;
+                        // let val = inp.value;
+                        let val = inp.innerText;
                         fSaveTranslation(key, val);
                     }
                 });
@@ -191,7 +194,8 @@
                 let data = {};
                 document.querySelectorAll('[data-value]').forEach((inp)=>{
                     let key = inp.getAttribute('data-tr-key');
-                    let val = inp.value;
+                    // let val = inp.value;
+                    let val = inp.innerText;
                     data[key] = val;
                 });
                 fBulkSaveTranslations(data);
@@ -217,7 +221,8 @@
             let bulk_reset_btn = document.getElementById('bulk_reset_btn');
             bulk_reset_btn.addEventListener('click', ()=>{
                 document.querySelectorAll('[data-value]').forEach((inp)=>{
-                    inp.value = inp.getAttribute('data-default');
+                    // inp.value = inp.getAttribute('data-default');
+                    inp.innerText = inp.getAttribute('data-default');
                 });
             });
             //--------------------------------------------------------------

@@ -69,7 +69,7 @@
 {{--                <td>--}}
 {{--                    <input type="text" class="td-input" data-value="{{$row_index}}" data-tr-key="{{$tr_key}}" data-default="{{$translation}}" value="{{$translation}}">--}}
 {{--                </td>--}}
-                <td style="white-space: pre-wrap" class="td-input" contenteditable="true" data-value="{{$row_index}}" data-tr-key="{{$tr_key}}" data-default="{{$translation}}">{{$translation}}</td>
+                <td style="white-space: pre-wrap" class="td-input" contenteditable="true" spellcheck="false" data-value="{{$row_index}}" data-tr-key="{{$tr_key}}" data-default="{{$translation}}">{{$translation}}</td>
                 <td class="action-td">
                     <button type="button" data-reset="{{$row_index}}" class="btn btn-sm btn-secondary me-2">Reset</button>
                     <button type="button" data-save="{{$row_index}}" class="btn btn-sm btn-primary">Save</button>

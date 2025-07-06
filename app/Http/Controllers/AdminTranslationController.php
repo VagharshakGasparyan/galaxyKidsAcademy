@@ -14,6 +14,7 @@ class AdminTranslationController extends Controller
             'header.' => 'Header',
             'footer.' => 'Footer',
             'top_section.' => 'Top section',
+            'bottom_buttons.' => 'Bottom buttons',
             'home.' => 'Home',
             'about-us.' => 'About us',
             'admissions.' => 'Admissions',

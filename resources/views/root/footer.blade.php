@@ -3,22 +3,22 @@
         <div class="footer-column">
             <h5 class="footer-title">Site Map</h5>
             <ul class="footer-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">News & Blog</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="{{route('home')}}">Home</a></li>
+                <li><a href="{{route('about_us')}}">About Us</a></li>
+                <li><a href="javascript:void(0)">News & Blog</a></li>
+                <li><a href="{{route('gallery')}}">Gallery</a></li>
+                <li><a href="{{route('contact_us')}}">Contact Us</a></li>
             </ul>
         </div>
 
         <div class="footer-column">
             <h5 class="footer-title">Quick Links</h5>
             <ul class="footer-links">
-                <li><a href="#">Admissions</a></li>
-                <li><a href="#">Tuition & Fees</a></li>
-                <li><a href="#">Our Programs</a></li>
-                <li><a href="#">Parents Corner</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="{{route('admissions')}}">Admissions</a></li>
+                <li><a href="{{route('tuitions_fees')}}">Tuition & Fees</a></li>
+                <li><a href="{{route('our_programs')}}">Our Programs</a></li>
+                <li><a href="{{route('parents_corner')}}">Parents Corner</a></li>
+                <li><a href="{{route('privacy_policy')}}">Privacy Policy</a></li>
             </ul>
         </div>
 
@@ -54,5 +54,5 @@
 </footer>
 
 <section class="copyright-bar">
-    <p>&copy; 2025 Dream Land Child Care Center</p>
+    <p>{{__('footer.copyright')}}</p>
 </section>

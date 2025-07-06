@@ -1,7 +1,91 @@
 @extends('root.root')
 @section('title', __('contact-us.head_title'))
 @section('content')
-    <h1 style="text-align: center">{{__('contact_us.Contact Us')}}</h1>
+    <div class="contact-container">
+        <div class="left-column">
+            <button type="button" class="call-now">
+                CALL NOW: (818) 123-4567
+            </button>
+            <div class="map-box">
+                <iframe
+                    src="https://maps.google.com/maps?q=6543%20Lankershim%20Blvd,%20North%20Hollywood,%20CA%2091606&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    frameborder="0"
+                    allowfullscreen
+                ></iframe>
+            </div>
+            <div class="info-box">
+                <h2>Dream Land Child Care Center</h2>
+                <p>
+                    6543 Lankershim BLVD<br />North Hollywood, CA 91606
+                </p>
+                <p><a href="#">Get Directions</a></p>
+                <p>P: (818) 123-4567</p>
+                <p>info@yahoo.com</p>
+                <p>
+                    <strong>Business Hours</strong><br />Mo, Tu, We, Th,
+                    Fr<br />7:30am – 5:30pm
+                </p>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <div class="form-box">
+                <h3>Start Here</h3>
+                <p class="small-text">
+                    Do not fill this form out if you're a solicitor.
+                </p>
+                <form>
+                    <div class="row">
+                        <input
+                            type="text"
+                            placeholder="First Name*"
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="Last Name*"
+                            required
+                        />
+                    </div>
+                    <div class="row">
+                        <input
+                            type="email"
+                            placeholder="Email*"
+                            required
+                        />
+                        <input
+                            type="tel"
+                            placeholder="Phone*"
+                            required
+                        />
+                    </div>
+                    <textarea
+                        placeholder="Questions or Comments*"
+                    ></textarea>
+                    <button type="submit">SUBMIT</button>
+                </form>
+            </div>
+            <div class="text-box">
+                <h2>Contact Us</h2>
+                <p>
+                    Our role is to supplement, but not take the place
+                    of, the primary role of families in providing care
+                    for their children. By establishing and maintaining
+                    open and ongoing communication with families, we are
+                    able to strengthen the ties that connect the home
+                    with our center and enhance the individual
+                    development of the children in our care. When
+                    families entrust their children to us, we are
+                    challenged to have a significant and positive
+                    influence by providing a program of the highest
+                    quality designed to help give children the
+                    foundation they need to build self-esteem, develop
+                    school readiness, and reach their full potential in
+                    learning. Contact us today to get started!
+                </p>
+            </div>
+        </div>
+    </div>
 
 @endsection
 @push('body_js')

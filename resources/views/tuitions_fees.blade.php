@@ -1,8 +1,113 @@
 @extends('root.root')
 @section('title', __('tuitions-fees.head_title'))
 @section('content')
-    <h1 style="text-align: center">{{__('tuitions-fees.Tuitions Fees')}}</h1>
+    @include('partials.hero_section')
 
+    <div class="container-wrap">
+        <h1 class="h1">Tuition &amp; Fees</h1>
+        <section class="tuition-fee-section section-divider">
+            <h2>Tuition Investment/Fees</h2>
+            <p class="body-font">
+                Tuition is due in advance with no deductions for any
+                absences, holidays, illness, or closures due to
+                inclement weather, power outages, or other situations
+                beyond Galaxy Kids Academy’s control. If tuition is not
+                paid on the day that it is due, a late fee will be added
+                to the tuition for each day that it is late until it is
+                paid in full. When a payment is delinquent for one week
+                or more, care may be suspended until the balance is
+                current and your child’s space will not be reserved.
+            </p>
+            <p class="body-font">
+                Tuition is due regardless of a child’s absence from the
+                program for any reason, and is required to hold a
+                child’s space. A fee will be charged for a check
+                returned for insufficient funds. If this occurs, Galaxy
+                Kids Academy will have the option to refuse any future
+                checks. There may be additional fees associated with
+                special summer activities or field trips for the
+                children. When you withdraw your child, you must give
+                one month’s notice prior to withdrawal, in writing, to
+                center management.
+            </p>
+        </section>
+
+        <section class="tuition-fee-section section-divider">
+            <h2>Payment Schedule</h2>
+            <p class="body-font">
+                Payments are due, as per your contract, regardless of a
+                child’s absence for any reason. These include a child’s
+                illness, family illness, vacations, doctor appointments,
+                parent’s days off work, etc.
+            </p>
+            <p class="body-font">
+                Please check with the center for the present fee
+                schedule. At the time of registration, parents of
+                children who receive child care services may choose the
+                following payment option:
+            </p>
+            <p class="body-font">
+                OPTION A: Payment is due in full on the first of each
+                month, for the current month. After the 5th of each
+                month, a $25.00 late fee will be added to the amount due
+                for each child with an outstanding balance.
+            </p>
+            <p class="body-font">
+                Payment for additional services received outside of the
+                contracted hours are due at the time services are
+                provided.
+            </p>
+            <p class="body-font body-font-bold">
+                If tuition is delinquent for a period of ten (10) days,
+                the child will be suspended from the center. At that
+                time, the parent must then make payment arrangements for
+                the outstanding balance. Parents may re-instate their
+                enrollment by making appropriate payment arrangements
+                with the Center Director. Accounts left unpaid
+                accumulate late fees and if necessary are sent to a
+                collection agency.
+            </p>
+        </section>
+
+        <section class="tuition-fee-section">
+            <h2>Tuition Subsidies</h2>
+            <p class="body-font">
+                Parents who receive assistance for child care, must have
+                proof of current authorization, showing the amount to be
+                received for assistance each week, prior to
+                registration. If a child starts prior to authorization
+                approval, or if there is a lapse time between approvals,
+                the parent is responsible for 100% of the tuition
+                payments until the center receives notice of
+                authorization. The parent is liable for any of the
+                tuition that is not covered by the payments received
+                from the assistance program.
+            </p>
+            <p class="body-font">
+                *Note: Galaxy Kids Academy requires that parents sign in
+                and out recording the times in the classroom in addition
+                to clocking in and out at our security entrance
+                computer. Parents must also note any absences on the
+                classroom attendance sheet with the reason for the
+                absence from our program. Parents who fail to log their
+                hours or absence on the classroom attendance sheets will
+                be responsible for the amount normally billed by the
+                center.
+            </p>
+            <p class="body-font">
+                Galaxy Kids Academy participates in the Child Care
+                Resource Center’s (CCRC) tuition subsidyprogram. For
+                further detailed information, please visit the CCRC
+                website:
+            </p>
+            <div class="body-font">
+                <a class="body-font-link" href="#">www.ccrcca.org</a>
+            </div>
+        </section>
+
+        @include('partials.buttons_container')
+
+    </div>
 @endsection
 @push('body_js')
     <script>

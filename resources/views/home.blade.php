@@ -2,12 +2,11 @@
 @section('title', __('Home'))
 @section('content')
     <!-- Hero section -->
-
     <div class="hero-section-home">
         <div class="hero-content-home">
             <h1>A Solid Foundation</h1>
             <p>For Your Children</p>
-            <a href="#" class="btn-home">GET STARTED HERE</a>
+            <a href="javascript:void(0)" class="btn-home">GET STARTED HERE</a>
         </div>
     </div>
 

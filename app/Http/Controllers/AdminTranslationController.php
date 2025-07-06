@@ -13,6 +13,7 @@ class AdminTranslationController extends Controller
         $trKeyGroups = [
             'header.' => 'Header',
             'footer.' => 'Footer',
+            'top_section.' => 'Top section',
             'home.' => 'Home',
             'about-us.' => 'About us',
             'admissions.' => 'Admissions',

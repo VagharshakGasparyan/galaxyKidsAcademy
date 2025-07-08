@@ -6,6 +6,7 @@
     <a href="{{route('admin.settings')}}" class="admin-sidebar-item @if(str_starts_with(request()->route()->getName(), 'admin.settings')) active @endif"><i class="fa fa-gears me-2"></i>Settings</a>
     <a href="{{route('admin.translations')}}" class="admin-sidebar-item @if(str_starts_with(request()->route()->getName(), 'admin.translations')) active @endif"><i class="fa fa-flag me-2"></i>Translations</a>
     <a href="{{route('admin.users')}}" class="admin-sidebar-item @if(str_starts_with(request()->route()->getName(), 'admin.users')) active @endif"><i class="fa fa-user me-2"></i>Users</a>
+    <a href="{{route('admin.deals')}}" class="admin-sidebar-item @if(str_starts_with(request()->route()->getName(), 'admin.deals')) active @endif"><i class="fa fa-ticket me-2"></i>Deals</a>
     <a href="{{route('admin.logs')}}" class="admin-sidebar-item @if(str_starts_with(request()->route()->getName(), 'admin.logs')) active @endif"><i class="fa fa-list-alt me-2"></i>Logs</a>
 
 </aside>

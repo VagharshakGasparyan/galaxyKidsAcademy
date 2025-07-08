@@ -16,16 +16,14 @@ $locale = app()->getLocale();
             <div class="social_icons_uxis">
                 <ul class="social_icons">
                     <li class="social-icon">
-                        <a href="#" target="_blank" rel="external"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="javascript:void(0)" target="_blank" rel="external"><i class="fa-brands fa-facebook-f"></i></a>
                     </li>
                     <li class="social-icon">
-                        <a href="#" target="_blank" rel="external"
-                        ><i class="fa-brands fa-instagram"></i></a>
+                        <a href="javascript:void(0)" target="_blank" rel="external"><i class="fa-brands fa-instagram"></i></a>
                     </li>
                 </ul>
-                <div class="icon-uxis-phone">
-                    CALL US:
-                    <span><strong><a href="#">(123) 456-7890</a></strong></span>
+                <div class="icon-uxis-phone">{{__('header.phone_text')}}
+                    <span><strong><a href="javascript:void(0)">{{__('header.phone_number')}}</a></strong></span>
                 </div>
             </div>
 

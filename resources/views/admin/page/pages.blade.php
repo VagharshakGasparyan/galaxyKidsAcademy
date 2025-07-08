@@ -116,9 +116,9 @@
                 <td style="white-space: nowrap">{{$item->created_at}}</td>
                 <td style="white-space: nowrap">{{$item->updated_at}}</td>
                 <td class="action-td sticky-column">
-                    <a class="btn btn-secondary me-2" href="{{route('admin.pages.update', $item->id)}}">Edit</a>
-                    <a class="btn btn-secondary me-2" href="{{route('admin.pages.show', $item->id)}}">Show</a>
-                    <a class="btn btn-secondary me-2" href="{{route('page', ['slug' => $item->slug])}}" target="_blank">Open Page</a>
+                    <a class="btn btn-sm btn-secondary me-2" href="{{route('admin.pages.update', $item->id)}}">Edit</a>
+                    <a class="btn btn-sm btn-secondary me-2" href="{{route('admin.pages.show', $item->id)}}">Show</a>
+                    <a class="btn btn-sm btn-secondary me-2" href="{{route('page', ['slug' => $item->slug])}}" target="_blank">Open Page</a>
                     <form class="d-inline-block" action="{{ route('admin.pages.delete', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete?');">
                         @csrf
                         @method('DELETE')
@@ -150,9 +150,9 @@
             let filter_reset_btn = document.getElementById('filter_reset_btn');
             filter_btn.addEventListener('click', ()=>{
                 const url = new URL(window.location.href);
-                url.searchParams.set('name', filter_name.value);
-                url.searchParams.set('slug', filter_slug.value);
-                url.searchParams.set('enabled', filter_enabled.value);
+                filter_name.value ? url.searchParams.set('name', filter_name.value) : url.searchParams.delete('name');
+                filter_slug.value ? url.searchParams.set('slug', filter_slug.value) : url.searchParams.delete('slug');
+                filter_enabled.value ? url.searchParams.set('enabled', filter_enabled.value) : url.searchParams.delete('enabled');
                 window.location.href = url.toString();
             });
             filter_reset_btn.addEventListener('click', ()=>{

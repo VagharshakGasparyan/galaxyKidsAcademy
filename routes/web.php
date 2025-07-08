@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDealsController;
 use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AdminPhotoController;
@@ -74,8 +75,17 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/translations/bulk-save', [AdminTranslationController::class, 'bulkSave'])->name('admin.translations.bulk_save');
         Route::post('/translations/put-keys', [AdminTranslationController::class, 'putKeys'])->name('admin.translations.put_keys');
         //-----------------------------------Translations-end-----------------------------------------------------------
+        //-----------------------------------Deals-begin----------------------------------------------------------------
+        Route::get('/deals', [AdminDealsController::class, 'index'])->name('admin.deals');
+        Route::get('/deals/update/{id}', [AdminDealsController::class, 'update'])->name('admin.deals.update');
+        Route::post('/deals/update/{id}', [AdminDealsController::class, 'postUpdate'])->name('admin.deals.postUpdate');
+        Route::get('/deals/show/{id}', [AdminDealsController::class, 'show'])->name('admin.deals.show');
+        Route::delete('/deals/delete/{id}', [AdminDealsController::class, 'delete'])->name('admin.deals.delete');
+        //-----------------------------------Users-end------------------------------------------------------------------
     });
 });
+
+Route::post('/deal', [AdminController::class, 'deal'])->name('deal');
 
 Route::group([
     'prefix' =>

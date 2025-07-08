@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deal;
 use App\Models\User;
 use App\Services\FService;
 use Illuminate\Http\Request;
@@ -103,6 +104,34 @@ class AdminController extends Controller
         ]);
 
         return back();
+    }
+
+    public function deal(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $request->validate([
+            'first_name' => 'required|min:2',
+            'last_name' => 'required|min:2',
+            'email' => 'required|email|min:6',
+            'phone_number' => 'required|min:9',
+            'comments' => 'required|min:10|max:500',
+        ]);
+        $email = $request->get('email');
+        if(Deal::where('email', $email)->where('status', Deal::STATUS_PENDING)->exists()){
+            return back()->withErrors(['email' => 'You already have a submitted deal with this email.']);
+        }
+
+        Deal::create([
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
+            'email' => $request->get('email'),
+            'phone_number' => $request->get('phone_number'),
+            'comments' => $request->get('comments'),
+        ]);
+
+        session()->flash('info_message', 'Deal has been created successfully.');
+
+        return back();
+
     }
 
 }

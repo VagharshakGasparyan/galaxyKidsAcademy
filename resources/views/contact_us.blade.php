@@ -19,18 +19,50 @@
 
         <div class="right-column">
             <div class="form-box">
+                @if(session()->has('info_message'))
+                    <div style="border: 1px solid #07f; color: #07f;border-radius: 10px;font-size: 16px;display: flex;overflow: hidden;">
+                        <div style="padding: 10px; background-color: #07f;color: white"><i class="fa fa-info"></i></div>
+                        <div style="padding: 10px; flex: 1">{{session()->get('info_message')}}</div>
+                    </div>
+                @endif
                 <h3>{{__('contact-us.form.title')}}</h3>
                 <p class="small-text">{{__('contact-us.form.sub_title')}}</p>
-                <form>
+                <form method="post" action="{{route('deal')}}">
+                    @csrf
                     <div class="row">
-                        <input type="text" placeholder="{{__('contact-us.form.First Name')}}*" required >
-                        <input type="text" placeholder="{{__('contact-us.form.Last Name')}}*" required >
+                        <div style="flex: 1;">
+                            <input type="text" name="first_name" style="width: 100%" placeholder="{{__('contact-us.form.First Name')}} *" required value="{{old('first_name')}}">
+                            @error('first_name')
+                            <div style="color: red;font-size: 12px;">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div style="flex: 1;">
+                            <input type="text" name="last_name" style="width: 100%" placeholder="{{__('contact-us.form.Last Name')}} *" required  value="{{old('last_name')}}">
+                            @error('last_name')
+                            <div style="color: red;font-size: 12px;">{{$message}}</div>
+                            @enderror
+                        </div>
+
                     </div>
                     <div class="row">
-                        <input type="email" placeholder="{{__('contact-us.form.Email')}}*" required >
-                        <input type="tel" placeholder="{{__('contact-us.form.Phone')}}*" required >
+                        <div style="flex: 1;">
+                            <input type="email" name="email" style="width: 100%" placeholder="{{__('contact-us.form.Email')}} *" required  value="{{old('email')}}">
+                            @error('email')
+                            <div style="color: red;font-size: 12px;">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div style="flex: 1;">
+                            <input type="tel" name="phone_number" style="width: 100%" placeholder="{{__('contact-us.form.Phone')}} *" required  value="{{old('phone_number')}}">
+                            @error('phone_number')
+                            <div style="color: red;font-size: 12px;">{{$message}}</div>
+                            @enderror
+                        </div>
+
                     </div>
-                    <textarea placeholder="{{__('contact-us.form.Questions or Comments')}}*" ></textarea>
+                    <textarea name="comments" placeholder="{{__('contact-us.form.Questions or Comments')}} *" >{{old('comments')}}</textarea>
+                    @error('comments')
+                    <div style="color: red;font-size: 12px;">{{$message}}</div>
+                    @enderror
                     <button type="submit">{{__('contact-us.form.SUBMIT')}}</button>
                 </form>
             </div>

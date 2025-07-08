@@ -4,83 +4,20 @@
     @include('partials.hero_section')
 
     <div class="container-wrap">
-        <h1 class="h1">Admissions</h1>
+        <h1 class="h1">{{__('admissions.header')}}</h1>
         <section class="admission-section section-divider">
-            <h2>Registration Procedure</h2>
-            <p class="body-font">
-                A Galaxy Kids Academy contract form must be completed
-                and returned to center management along with the
-                registration fee (where applicable). Upon receipt of the
-                contract and first month contract fee, your child will
-                be registered based on availability. If current space is
-                not available to meet your needs, your family’s name
-                will be placed on a waiting list. We cannot guarantee
-                that a space will be available for your child on the day
-                you desire. Enrollment is based on availability and may
-                be subject to priority enrollment rules of the center.
-                Families may choose to be on the wait list at Galaxy
-                Kids Academy with payment of a single registration fee,
-                where permitted. When a space becomes available, the
-                center will invite you to visit with your child to
-                discuss the enrollment process. The visit will give your
-                child an opportunity to spend time in his or her
-                classroom and be introduced to the children and staff.
-                During the visit, you will have an opportunity to
-                observe your child in the classroom, meet with center
-                management to schedule a start date, and review the
-                enrollment procedure. Registration is required annually.
-            </p>
+            <h2>{{__('admissions.sub_header_1')}}</h2>
+            <p class="body-font" style="white-space: pre-line">{{__('admissions.sub_content_1')}}</p>
         </section>
 
         <section class="admission-section section-divider">
-            <h2>Enrollment Procedure</h2>
-            <p class="body-font">
-                In order to secure appropriate staffing levels at all
-                times of the day, we will ask you to provide the
-                specific hours of care needed for your child,
-                recognizing that you may need to change these
-                periodically. Prior to your child’s start date, please
-                feel free to schedule as many visits as necessary to
-                help familiarize you and your child with the center.
-                This is an excellent way to help your child feel
-                comfortable in his or her classroom. During the
-                enrollment process, you must complete forms regarding
-                your child’s health and development. These forms include
-                family information, a medical authorization and consent
-                form, and a developmental history. An updated physical
-                and immunization record is required for your child prior
-                to enrollment. You are also expected to read and sign an
-                enrollment contract that outlines the program’s
-                policies. All forms in your child’s file must be updated
-                annually. Please remember to provide the center with
-                additional updates as needed (e.g., phone numbers, work
-                information, change of emergency contact or medical
-                information, including allergies).
-            </p>
+            <h2>{{__('admissions.sub_header_2')}}</h2>
+            <p class="body-font" style="white-space: pre-line">{{__('admissions.sub_content_2')}}</p>
         </section>
 
         <section class="admission-section">
-            <h2>Enrollment Contracts</h2>
-            <p class="body-font">
-                Our contract year extends from September 1 through
-                August 31 of each year. A contract may be arranged by
-                the parent for any portion or for the full contract
-                period. Contracts will be updated at the end of each
-                year, August 31. In the event you find that you need to
-                discontinue services prior to the end date of the
-                contract, one month written notice must be provided.
-                Your monthly fee will be adjusted from that start of the
-                contract to the new ending date. Parents requesting to
-                cancel contracts to modify days in attendance may do so
-                once during the contract year by providing a one month
-                written notice. Additional requests will be honored by
-                the center after receiving payment of the $100 contract
-                cancellation fee. Contracts must be signed by all
-                parties responsible for payments. If parents elect to
-                arrange payments from multiple responsible individuals,
-                separate signed contracts will be required for all
-                parties the agency is asked to bill for services.
-            </p>
+            <h2>{{__('admissions.sub_header_3')}}</h2>
+            <p class="body-font" style="white-space: pre-line">{{__('admissions.sub_content_3')}}</p>
         </section>
 
         @include('partials.buttons_container')

@@ -1,24 +1,12 @@
 @extends('root.root')
-@section('title', __('gallery.Gallery'))
+@section('title', __('gallery.head_title'))
 @section('content')
     @include('partials.hero_section')
 
     <div class="container-wrap">
         <section class="gallery-section section-divider">
-            <h2>Gallery</h2>
-            <p class="body-font">
-                Galaxy Kids Academy strives to provide an educational
-                program to every child enrolled while offering a network
-                of support to each family as a whole.
-            </p>
-            <p class="body-font">
-                Our teachers work in partnership with each family to
-                identify individual goals and plans for the children.
-                The curriculum we implement provides a comprehensive
-                program for children and work toward development in the
-                areas of communication, gross motor, fine motor,
-                problem-solving, and personal-social.
-            </p>
+            <h2>{{__('gallery.header')}}</h2>
+            <p class="body-font" style="white-space: pre-line">{{__('gallery.content')}}</p>
         </section>
 
         <div class="gallery">

@@ -34,6 +34,7 @@
 
             </tbody>
         </table>
+        <div class="mt-5">{{ $logs->appends(request()->query())->links('pagination.my_default') }}</div>
     </div>
 
 

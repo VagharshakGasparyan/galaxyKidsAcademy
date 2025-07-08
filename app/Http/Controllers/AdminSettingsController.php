@@ -96,7 +96,7 @@ class AdminSettingsController extends Controller
         $logs = collect(File::allFiles(base_path('storage/logs')))
             ->filter(fn($file) => str_starts_with(basename($file), 'laravel-') && str_ends_with(basename($file), '.log'))
             ->sortDesc()
-            ->paginate(15);
+            ->paginate(10);
 //        dd($logs);
 
         return view('admin.setting.logs', compact('per_page', 'logs'));

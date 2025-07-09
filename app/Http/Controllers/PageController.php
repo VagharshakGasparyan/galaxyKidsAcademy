@@ -61,7 +61,7 @@ class PageController extends Controller
     {
 //        dd($locale, $slug, $subs);
         $newSlug = $subs ? $slug . '/' . $subs : $slug;
-        $page = Page::where('slug', $newSlug)->firstOrFail();
+        $page = Page::where('slug', $newSlug)->where('enabled', true)->firstOrFail();
         return view('page', compact('page'));
     }
 }

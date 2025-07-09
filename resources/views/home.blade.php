@@ -2,11 +2,11 @@
 @section('title', __('home.head_title'))
 @section('content')
     <!-- Hero section -->
-    <div class="hero-section-home">
+    <div class="hero-section-home" style=" @if($home_top_image->value1 ?? null) background-image: url('{{asset('storage/' . $home_top_image->value1)}}'); @endif " >
         <div class="hero-content-home">
             <h1>{{__('home.header_section_text')}}</h1>
             <p>{{__('home.header_section_sub_text')}}</p>
-            <a href="javascript:void(0)" class="btn-home">{{__('home.header_section_button_text')}}</a>
+            <a href="{{route('contact_us')}}" class="btn-home">{{__('home.header_section_button_text')}}</a>
         </div>
     </div>
 
@@ -57,7 +57,7 @@
     <!-- Hero section end -->
 
     <!-- Features section -->
-    <section class="features-section">
+    <section class="features-section" style=" @if($home_middle_image->value1 ?? null) background-image: url('{{asset('storage/' . $home_middle_image->value1)}}'); @endif ">
         <div class="features-overlay"></div>
         <div class="container">
             <div class="feature-card">
@@ -124,9 +124,9 @@
                 <h2 class="tour-title">{{__('home.tour.title')}}</h2>
                 <p class="tour-subtitle">{{__('home.tour.sub_title')}}</p>
                 <p class="tour-description">{{__('home.tour.content')}}</p>
-                <a href="javascript:void(0)" class="btn-schedule">{{__('home.button.SCHEDULE TODAY')}}</a>
+                <a href="{{route('contact_us')}}" class="btn-schedule">{{__('home.button.SCHEDULE TODAY')}}</a>
             </div>
-            <div class="tour-image-column"></div>
+            <div class="tour-image-column" style=" @if($home_bottom_image->value1 ?? null) background-image: url('{{asset('storage/' . $home_bottom_image->value1)}}'); @endif "></div>
         </div>
     </section>
 

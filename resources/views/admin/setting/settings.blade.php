@@ -20,7 +20,7 @@
             <table class="my_table">
                 <thead>
                 <tr>
-                    <th>Name</th>
+                    <th class="action-td">Name</th>
                     <th>View</th>
                     <th>Value</th>
                     <th class="action-td">Actions</th>
@@ -28,25 +28,25 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Main Logo</td>
-                    <td id="show_logo">
+                    <td class="action-td">Header Logo</td>
+                    <td id="show_header_logo">
                         @if($settings['header_logo']->value1 ?? null)
-                            <img src="{{asset('storage/' . $settings['header_logo']->value1)}}" alt="header logo" style="max-height: 50px;border-radius: 5px;">
+                            <img src="{{asset('storage/' . $settings['header_logo']->value1)}}" alt="header logo" style="max-height: 70px;border-radius: 5px;">
                         @endif
                     </td>
                     <td>{{$settings['header_logo']->value1 ?? '-'}}</td>
                     <td>
                         <input type="hidden" value="{{$settings['header_logo']->value1 ?? ''}}" name="old_header_logo">
-                        <input id="main_logo_input" type="file" name="header_logo" accept="image/jpeg,image/png,image/icon" style="display: none;">
-                        <button id="change_main_logo_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
-                        <button type="button" class="btn btn-sm btn-light" id="delete_main_logo_button">Delete</button>
+                        <input id="header_logo_input" type="file" name="header_logo" accept="image/jpeg,image/png,image/icon" style="display: none;">
+                        <button id="change_header_logo_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
+                        <button type="button" class="btn btn-sm btn-light" id="delete_header_logo_button">Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>Icon</td>
+                    <td class="action-td">Icon</td>
                     <td id="show_icon">
                         @if($settings['icon']->value1 ?? null)
-                            <img src="{{asset('storage/' . $settings['icon']->value1)}}" alt="icon" style="max-height: 50px;border-radius: 5px;">
+                            <img src="{{asset('storage/' . $settings['icon']->value1)}}" alt="icon" style="max-height: 70px;border-radius: 5px;">
                         @endif
                     </td>
                     <td>{{$settings['icon']->value1 ?? '-'}}</td>
@@ -55,6 +55,66 @@
                         <input id="icon_input" type="file" name="icon" accept="image/jpeg,image/png,image/icon" style="display: none;">
                         <button id="change_icon_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
                         <button type="button" class="btn btn-sm btn-light" id="delete_icon_button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="action-td">Home top image</td>
+                    <td id="show_home_top_image">
+                        @if($settings['home_top_image']->value1 ?? null)
+                            <img src="{{asset('storage/' . $settings['home_top_image']->value1)}}" alt="image" style="max-height: 70px;border-radius: 5px;">
+                        @endif
+                    </td>
+                    <td>{{$settings['home_top_image']->value1 ?? '-'}}</td>
+                    <td class="action-td">
+                        <input type="hidden" value="{{$settings['home_top_image']->value1 ?? ''}}" name="old_home_top_image">
+                        <input id="home_top_image_input" type="file" name="home_top_image" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                        <button id="change_home_top_image_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
+                        <button type="button" class="btn btn-sm btn-light" id="delete_home_top_image_button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="action-td">Home middle image</td>
+                    <td id="show_home_middle_image">
+                        @if($settings['home_middle_image']->value1 ?? null)
+                            <img src="{{asset('storage/' . $settings['home_middle_image']->value1)}}" alt="image" style="max-height: 70px;border-radius: 5px;">
+                        @endif
+                    </td>
+                    <td>{{$settings['home_middle_image']->value1 ?? '-'}}</td>
+                    <td class="action-td">
+                        <input type="hidden" value="{{$settings['home_middle_image']->value1 ?? ''}}" name="old_home_middle_image">
+                        <input id="home_middle_image_input" type="file" name="home_middle_image" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                        <button id="change_home_middle_image_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
+                        <button type="button" class="btn btn-sm btn-light" id="delete_home_middle_image_button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="action-td">Home bottom image</td>
+                    <td id="show_home_bottom_image">
+                        @if($settings['home_bottom_image']->value1 ?? null)
+                            <img src="{{asset('storage/' . $settings['home_bottom_image']->value1)}}" alt="image" style="max-height: 70px;border-radius: 5px;">
+                        @endif
+                    </td>
+                    <td>{{$settings['home_bottom_image']->value1 ?? '-'}}</td>
+                    <td class="action-td">
+                        <input type="hidden" value="{{$settings['home_bottom_image']->value1 ?? ''}}" name="old_home_bottom_image">
+                        <input id="home_bottom_image_input" type="file" name="home_bottom_image" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                        <button id="change_home_bottom_image_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
+                        <button type="button" class="btn btn-sm btn-light" id="delete_home_bottom_image_button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="action-td">Top section image</td>
+                    <td id="show_top_section_image">
+                        @if($settings['top_section_image']->value1 ?? null)
+                            <img src="{{asset('storage/' . $settings['top_section_image']->value1)}}" alt="image" style="max-height: 70px;border-radius: 5px;">
+                        @endif
+                    </td>
+                    <td>{{$settings['top_section_image']->value1 ?? '-'}}</td>
+                    <td class="action-td">
+                        <input type="hidden" value="{{$settings['top_section_image']->value1 ?? ''}}" name="old_top_section_image">
+                        <input id="top_section_image_input" type="file" name="top_section_image" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                        <button id="change_top_section_image_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
+                        <button type="button" class="btn btn-sm btn-light" id="delete_top_section_image_button">Delete</button>
                     </td>
                 </tr>
                 </tbody>
@@ -86,51 +146,32 @@
                 });
                 return b64;
             }
-            let change_main_logo_button = document.getElementById('change_main_logo_button');
-            let delete_icon_button = document.getElementById('delete_icon_button');
-            let change_icon_button = document.getElementById('change_icon_button');
-            let delete_main_logo_button = document.getElementById('delete_main_logo_button');
+            let settings = ['icon', 'header_logo', 'home_top_image', 'home_middle_image', 'home_bottom_image', 'top_section_image'];
+            settings.forEach((setting)=>{
+                let changeButton = document.getElementById('change_' + setting + '_button');
+                let deleteButton = document.getElementById('delete_' + setting + '_button');
+                let showContainer = document.getElementById('show_' + setting);
+                let input = document.getElementById(setting + '_input');
+                changeButton.addEventListener('click', ()=>{
+                    input.click();
+                });
+                deleteButton.addEventListener('click', ()=>{
+                    showContainer.innerHTML = '';
+                    input.value = null;
+                    document.querySelector('input[name="old_' + setting + '"]').value = null;
+                });
+                input.addEventListener('input', async ()=>{
+                    let file = input.files[0];
+                    if (file.type.startsWith('image')) {
+                        let img = new Image;
+                        img.style.maxHeight = '70px';
+                        img.src = await fileToBase64(file);
+                        showContainer.innerHTML = '';
+                        showContainer.appendChild(img);
+                    }
+                });
+            });
 
-            let show_logo = document.getElementById('show_logo');
-            let show_icon = document.getElementById('show_icon');
-            let main_logo_input = document.getElementById('main_logo_input');
-            let icon_input = document.getElementById('icon_input');
-            change_main_logo_button.addEventListener('click', ()=>{
-                main_logo_input.click();
-            });
-            delete_main_logo_button.addEventListener('click', ()=>{
-                show_logo.innerHTML = '';
-                main_logo_input.value = null;
-                document.querySelector('input[name="old_header_logo"]').value = null;
-            });
-            change_icon_button.addEventListener('click', ()=>{
-                icon_input.click();
-            });
-            delete_icon_button.addEventListener('click', ()=>{
-                show_icon.innerHTML = '';
-                icon_input.value = null;
-                document.querySelector('input[name="old_icon"]').value = null;
-            });
-            main_logo_input.addEventListener('input', async ()=>{
-                let file = main_logo_input.files[0];
-                if (file.type.startsWith('image')) {
-                    let img = new Image;
-                    img.style.maxHeight = '50px';
-                    img.src = await fileToBase64(file);
-                    show_logo.innerHTML = '';
-                    show_logo.appendChild(img);
-                }
-            });
-            icon_input.addEventListener('input', async ()=>{
-                let file = icon_input.files[0];
-                if (file.type.startsWith('image')) {
-                    let img = new Image;
-                    img.style.maxHeight = '50px';
-                    img.src = await fileToBase64(file);
-                    show_icon.innerHTML = '';
-                    show_icon.appendChild(img);
-                }
-            });
         });
 
     </script>

@@ -96,7 +96,7 @@ class AdminMenuController extends Controller
                     $this->storeOrder($itemId, $newParentId);
                 }else{
                     if ($parent_id === null){
-                        MainMenu::find($itemId)->update(['order' => $index]);
+                        MainMenu::find($itemId)->update(['order' => $index, 'parent_id' => null]);
                     }else{
                         MainMenu::find($itemId)->update(['order' => $index, 'parent_id' => $parent_id]);
                     }

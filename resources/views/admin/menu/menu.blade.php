@@ -65,7 +65,7 @@
             let reorder_menu = document.getElementById('reorder_menu');
             reorder_menu.addEventListener('click', ()=>{
                 let data = findOrders(document.getElementById('menu_container'));
-                console.log(data);
+                // console.log(data);
                 sendReorder({"data": data});
             });
 

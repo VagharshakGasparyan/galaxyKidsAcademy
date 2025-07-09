@@ -1,14 +1,15 @@
 @php
-$mainMenu = \App\Models\MainMenu::whereNull('parent_id')->orderBy('order', 'asc')->get();
-$locale = app()->getLocale();
+    use App\Models\MyConfig;
+    $mainMenu = \App\Models\MainMenu::whereNull('parent_id')->orderBy('order', 'asc')->get();
+    $locale = app()->getLocale();
+    $header_logo = MyConfig::where('group_key', 'site')->where('key', 'header_logo')->first();
 @endphp
 
 <header>
     <div id="logo" class="logo-is-desktop">
         <img
-            src="{{asset('assets/web/images/main/logo-removebg-preview.png')}}"
-            alt=""
-            class="logo_img"
+            src="{{($header_logo->value1 ?? null) ? asset('storage/' . $header_logo->value1) : asset('assets/web/images/main/logo-removebg-preview.png')}}"
+            alt="" class="logo_img"
         />
     </div>
     <div class="site_header">
@@ -16,10 +17,12 @@ $locale = app()->getLocale();
             <div class="social_icons_uxis">
                 <ul class="social_icons">
                     <li class="social-icon">
-                        <a href="javascript:void(0)" target="_blank" rel="external"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="javascript:void(0)" target="_blank" rel="external"><i
+                                class="fa-brands fa-facebook-f"></i></a>
                     </li>
                     <li class="social-icon">
-                        <a href="javascript:void(0)" target="_blank" rel="external"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="javascript:void(0)" target="_blank" rel="external"><i
+                                class="fa-brands fa-instagram"></i></a>
                     </li>
                 </ul>
                 <div class="icon-uxis-phone">{{__('header.phone_text')}}
@@ -32,12 +35,12 @@ $locale = app()->getLocale();
             <div class="language-switcher">
                 <div class="login-register">
                     <div class="HeaderMenu-link-wrap">
-                        <a href="#" class="HeaderMenu-link HeaderMenu-link--sign-in">
-                            Sign in
-                        </a>
-                        <a href="#" class="HeaderMenu-link HeaderMenu-link--sign-up">
-                            Sign up
-                        </a>
+                        {{--                        <a href="#" class="HeaderMenu-link HeaderMenu-link--sign-in">--}}
+                        {{--                            Sign in--}}
+                        {{--                        </a>--}}
+                        {{--                        <a href="#" class="HeaderMenu-link HeaderMenu-link--sign-up">--}}
+                        {{--                            Sign up--}}
+                        {{--                        </a>--}}
                     </div>
                 </div>
 
@@ -48,10 +51,12 @@ $locale = app()->getLocale();
                 <div class="language-dropdown">
                     <ul class="language-list">
                         @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-{{--                            <option value="{{$localeCode}}">{{$properties['name']}}</option>--}}
+                            {{--                            <option value="{{$localeCode}}">{{$properties['name']}}</option>--}}
                             <li class="language-item @if($locale == $localeCode) active @endif ">
-                                <a href="{{\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" data-lang="{{$localeCode}}">
-                                    <span class="flag-icon fi {{['en' => 'fi-us', 'hy' => 'fi-am'][$localeCode]}}"></span>
+                                <a href="{{\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
+                                   data-lang="{{$localeCode}}">
+                                    <span
+                                        class="flag-icon fi {{['en' => 'fi-us', 'hy' => 'fi-am'][$localeCode]}}"></span>
                                     {{$properties['name']}}
                                 </a>
                             </li>
@@ -91,8 +96,8 @@ $locale = app()->getLocale();
                     </div>
                     <div id="logo-is-desktop">
                         <img src="{{asset('assets/web/images/main/logo-removebg-preview.png')}}"
-                            alt=""
-                            class="logo_img">
+                             alt=""
+                             class="logo_img">
                     </div>
                     <div class="burger-phone">
                         <a href="#"

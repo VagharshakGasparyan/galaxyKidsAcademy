@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MyConfig;
 use App\Models\Page;
 use App\Models\Photo;
 use Illuminate\Http\Request;
@@ -10,8 +11,10 @@ class PageController extends Controller
 {
     public function home(): \Illuminate\Contracts\View\View
     {
-
-        return view('home');
+        $home_top_image = MyConfig::where('group_key', 'site')->where('key', 'home_top_image')->first();
+        $home_middle_image = MyConfig::where('group_key', 'site')->where('key', 'home_middle_image')->first();
+        $home_bottom_image = MyConfig::where('group_key', 'site')->where('key', 'home_bottom_image')->first();
+        return view('home', compact('home_top_image', 'home_middle_image', 'home_bottom_image'));
     }
     public function gallery(): \Illuminate\Contracts\View\View
     {

@@ -22,6 +22,8 @@ class AdminSettingsController extends Controller
         $settings['home_middle_image'] = MyConfig::where('group_key', 'site')->where('key', 'home_middle_image')->first();
         $settings['home_bottom_image'] = MyConfig::where('group_key', 'site')->where('key', 'home_bottom_image')->first();
         $settings['top_section_image'] = MyConfig::where('group_key', 'site')->where('key', 'top_section_image')->first();
+        $settings['pdf1'] = MyConfig::where('group_key', 'site')->where('key', 'pdf1')->first();
+        $settings['pdf2'] = MyConfig::where('group_key', 'site')->where('key', 'pdf2')->first();
 
         return view('admin.setting.settings', compact('settings'));
     }
@@ -35,6 +37,8 @@ class AdminSettingsController extends Controller
             'home_middle_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:15000|dimensions:min_width=32,min_height=32,max_width=3000,max_height=3000',
             'home_bottom_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:15000|dimensions:min_width=32,min_height=32,max_width=3000,max_height=3000',
             'top_section_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:15000|dimensions:min_width=32,min_height=32,max_width=3000,max_height=3000',
+            'pdf1' => 'nullable|file|mimes:pdf|max:100000',
+            'pdf2' => 'nullable|file|mimes:pdf|max:100000',
         ]);
 
         $settings = ['icon', 'header_logo', 'home_top_image', 'home_middle_image', 'home_bottom_image', 'top_section_image'];
@@ -58,6 +62,30 @@ class AdminSettingsController extends Controller
                     'group_key' => 'site',
                     'key' => $setting,
                     'value1' => $new_setting
+                ]
+            );
+        }
+        $pdfs = ['pdf1', 'pdf2'];
+        foreach ($pdfs as $pdf) {
+            $old_pdf = $request->get('old_' . $pdf);
+            $db_pdf = MyConfig::where('group_key', 'site')->where('key', $pdf)->first()->value1 ?? null;
+            $new_pdf = $old_pdf ? $db_pdf : null;
+            $req_pdf = $request->files->get($pdf);
+            if($req_pdf){
+                $src_filePath = (new FService())->fileUpload($req_pdf, 'uploads/pdf');
+                $new_pdf = $src_filePath['filePath'];
+                if($db_pdf){
+                    Storage::disk('public')->delete($db_pdf);
+                }
+            }elseif (!$old_pdf && $db_pdf) {
+                Storage::disk('public')->delete($db_pdf);
+            }
+            MyConfig::updateOrCreate(
+                ['group_key' => 'site', 'key' => $pdf],
+                [
+                    'group_key' => 'site',
+                    'key' => $pdf,
+                    'value1' => $new_pdf
                 ]
             );
         }

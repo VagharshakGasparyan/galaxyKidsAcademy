@@ -117,6 +117,48 @@
                         <button type="button" class="btn btn-sm btn-light" id="delete_top_section_image_button">Delete</button>
                     </td>
                 </tr>
+                <tr>
+                    <td class="action-td">PDF 1 file</td>
+                    <td id="show_pdf1">
+                        @if($settings['pdf1']->value1 ?? null)
+                            <div style="font-size: 30px;font-weight: bold;text-align: center;color: #f37;border:1px solid #f37;border-radius: 7px;padding: 5px 10px;">PDF</div>
+                        @endif
+                    </td>
+                    <td>
+                        @if($settings['pdf1']->value1 ?? null)
+                            <a href="{{asset('storage/' . $settings['pdf1']->value1)}}" download>{{$settings['pdf1']->value1}}</a>
+                        @else
+                            <span>-</span>
+                        @endif
+                    </td>
+                    <td class="action-td">
+                        <input type="hidden" value="{{$settings['pdf1']->value1 ?? ''}}" name="old_pdf1">
+                        <input id="pdf1_input" type="file" name="pdf1" accept="application/pdf" style="display: none;">
+                        <button id="change_pdf1_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
+                        <button type="button" class="btn btn-sm btn-light" id="delete_pdf1_button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="action-td">PDF 2 file</td>
+                    <td id="show_pdf2">
+                        @if($settings['pdf2']->value1 ?? null)
+                            <div style="font-size: 30px;font-weight: bold;text-align: center;color: #f37;border:1px solid #f37;border-radius: 7px;padding: 5px 10px;">PDF</div>
+                        @endif
+                    </td>
+                    <td>
+                        @if($settings['pdf2']->value1 ?? null)
+                            <a href="{{asset('storage/' . $settings['pdf2']->value1)}}" download>{{$settings['pdf2']->value1}}</a>
+                        @else
+                            <span>-</span>
+                        @endif
+                    </td>
+                    <td class="action-td">
+                        <input type="hidden" value="{{$settings['pdf2']->value1 ?? ''}}" name="old_pdf2">
+                        <input id="pdf2_input" type="file" name="pdf2" accept="application/pdf" style="display: none;">
+                        <button id="change_pdf2_button" class="btn btn-sm btn-secondary me-2" type="button">Change</button>
+                        <button type="button" class="btn btn-sm btn-light" id="delete_pdf2_button">Delete</button>
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <div style="margin-top: 25px;">
@@ -168,6 +210,27 @@
                         img.src = await fileToBase64(file);
                         showContainer.innerHTML = '';
                         showContainer.appendChild(img);
+                    }
+                });
+            });
+            let pdfs = ['pdf1', 'pdf2'];
+            pdfs.forEach((pdf)=>{
+                let changeButton = document.getElementById('change_' + pdf + '_button');
+                let deleteButton = document.getElementById('delete_' + pdf + '_button');
+                let showContainer = document.getElementById('show_' + pdf);
+                let input = document.getElementById(pdf + '_input');
+                changeButton.addEventListener('click', ()=>{
+                    input.click();
+                });
+                deleteButton.addEventListener('click', ()=>{
+                    showContainer.innerHTML = '';
+                    input.value = null;
+                    document.querySelector('input[name="old_' + pdf + '"]').value = null;
+                });
+                input.addEventListener('input', async ()=>{
+                    let file = input.files[0];
+                    if (file.type.toLowerCase() === 'application/pdf') {
+                        showContainer.innerHTML = '<div style="font-size: 30px;font-weight: bold;text-align: center;color: #f37;border:1px solid #f37;border-radius: 7px;padding: 5px 10px;">PDF</div>';
                     }
                 });
             });

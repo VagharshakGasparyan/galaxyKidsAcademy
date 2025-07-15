@@ -1,11 +1,34 @@
-+pagination design nayel
-+table-i stickin avelacnel
-+account-i photon cuyc tal, update-um photo-n avelacnel
-+left menu-i header_bar-@ dzel
-+avelacnel pages-um tiny text grelu tegh
-+avelacnel tarkmanutyunner@ poxelu hnaravorutyun
-+adminki ejerum avelacnel filtrner
+install php 8.3
+//-------------------------------------------------------------------
+install composer
+# Скачивание и установка
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
 
-avelacnel fronti ejer@
+# Перенос в глобальную область (опционально)
+sudo mv composer.phar /usr/local/bin/composer
 
+# Проверка
+composer --version
+//-------------------------------------------------------------------
+if need: composer install
+     or: composer update
+
+.env-um APP_DEBUG=false
+php artisan config:clear
+php artisan config:cache
+
+php artisan route:clear
+php artisan route:cache
+//-------------------------------------------------------------------
+before: remove storage from public if exists
+php artisan storage:link or php artisan storage:link --relative
+# Для Ubuntu/Debian
+sudo apt-get install coreutils
+
+# Для CentOS/RHEL
+sudo yum install coreutils
+//-------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 <header class="admin-header">
     <div class="admin-header-sidebar d-flex">
-        <div style="flex: 1" class="ps-2 text-center"><a class="neutral-anchor" href="{{route('admin.dashboard')}}">Galaxy Kids Academy</a></div>
+        <div style="flex: 1" class="ps-2 text-center"><a class="neutral-anchor" href="{{route('admin.dashboard')}}">Dreamland</a></div>
         <i class="fa fa-2x fa-bars" id="admin_header_bar"></i>
     </div>
     <div style="flex: 1">

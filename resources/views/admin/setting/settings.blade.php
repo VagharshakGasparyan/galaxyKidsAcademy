@@ -159,6 +159,34 @@
                         <button type="button" class="btn btn-sm btn-light" id="delete_pdf2_button">Delete</button>
                     </td>
                 </tr>
+                <tr>
+                    <td class="action-td">Instagram Link</td>
+                    <td>
+                        @if($settings['instagram_link']->value1 ?? null)
+                            <a href="{{$settings['instagram_link']->value1 ?? '#'}}" class="social-icon" target="_blank"><i class="fa fa-instagram"></i></a>
+                        @endif
+                    </td>
+                    <td>
+                        <input name="instagram_link" class="form-control" placeholder="Instagram Link" type="text" value="{{$settings['instagram_link']->value1 ?? ''}}">
+                    </td>
+                    <td class="action-td">
+                        <button type="button" class="btn btn-sm btn-light" id="delete_instagram_link_button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="action-td">Facebook Link</td>
+                    <td>
+                        @if($settings['facebook_link']->value1 ?? null)
+                            <a href="{{$settings['facebook_link']->value1 ?? '#'}}" class="social-icon" target="_blank"><i class="fa fa-facebook"></i></a>
+                        @endif
+                    </td>
+                    <td>
+                        <input name="facebook_link" class="form-control" placeholder="Facebook Link" type="text" value="{{$settings['facebook_link']->value1 ?? ''}}">
+                    </td>
+                    <td class="action-td">
+                        <button type="button" class="btn btn-sm btn-light" id="delete_facebook_link_button">Delete</button>
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <div style="margin-top: 25px;">
@@ -232,6 +260,14 @@
                     if (file.type.toLowerCase() === 'application/pdf') {
                         showContainer.innerHTML = '<div style="font-size: 30px;font-weight: bold;text-align: center;color: #f37;border:1px solid #f37;border-radius: 7px;padding: 5px 10px;">PDF</div>';
                     }
+                });
+            });
+            let socialLinks = ['instagram_link', 'facebook_link'];
+            socialLinks.forEach((social_link) => {
+                let deleteButton = document.getElementById('delete_' + social_link + '_button');
+                let input = document.querySelector('input[name="' + social_link + '"]');
+                deleteButton.addEventListener('click', ()=>{
+                    input.value = null;
                 });
             });
 

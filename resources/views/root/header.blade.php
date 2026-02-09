@@ -3,6 +3,8 @@
     $mainMenu = \App\Models\MainMenu::whereNull('parent_id')->orderBy('order', 'asc')->get();
     $locale = app()->getLocale();
     $header_logo = MyConfig::where('group_key', 'site')->where('key', 'header_logo')->first();
+    $instagram_link = MyConfig::where('group_key', 'site')->where('key', 'instagram_link')->first();
+    $facebook_link = MyConfig::where('group_key', 'site')->where('key', 'facebook_link')->first();
 @endphp
 
 <header>
@@ -16,14 +18,18 @@
         <div class="header_top">
             <div class="social_icons_uxis">
                 <ul class="social_icons">
+                    @if($facebook_link && $facebook_link->value1)
                     <li class="social-icon">
-                        <a href="javascript:void(0)" target="_blank" rel="external"><i
+                        <a href="{{$facebook_link->value1}}" target="_blank" rel="external"><i
                                 class="fa-brands fa-facebook-f"></i></a>
                     </li>
+                    @endif
+                    @if($instagram_link && $instagram_link->value1)
                     <li class="social-icon">
-                        <a href="javascript:void(0)" target="_blank" rel="external"><i
+                        <a href="{{$instagram_link->value1}}" target="_blank" rel="external"><i
                                 class="fa-brands fa-instagram"></i></a>
                     </li>
+                    @endif
                 </ul>
                 <div class="icon-uxis-phone">{{__('header.phone_text')}}
                     <span><strong><a href="javascript:void(0)">{{__('header.phone_number')}}</a></strong></span>

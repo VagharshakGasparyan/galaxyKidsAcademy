@@ -2,6 +2,8 @@
     use App\Models\MyConfig;
     $pdf1 = MyConfig::where('group_key', 'site')->where('key', 'pdf1')->first();
     $pdf2 = MyConfig::where('group_key', 'site')->where('key', 'pdf2')->first();
+    $instagram_link = MyConfig::where('group_key', 'site')->where('key', 'instagram_link')->first();
+    $facebook_link = MyConfig::where('group_key', 'site')->where('key', 'facebook_link')->first();
 @endphp
 <footer class="main-footer">
     <div class="footer-container">
@@ -41,10 +43,14 @@
         </div>
 
         <div class="footer-column footer-social">
-            <a href="#" class="social-icon"
+            @if($instagram_link && $instagram_link->value1)
+            <a href="{{$instagram_link->value1}}" class="social-icon" target="_blank"
             ><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon"
+            @endif
+            @if($facebook_link && $facebook_link->value1)
+            <a href="{{$facebook_link->value1}}" class="social-icon" target="_blank"
             ><i class="fab fa-facebook-f"></i></a>
+            @endif
         </div>
     </div>
 </footer>

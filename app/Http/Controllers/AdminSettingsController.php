@@ -24,6 +24,8 @@ class AdminSettingsController extends Controller
         $settings['top_section_image'] = MyConfig::where('group_key', 'site')->where('key', 'top_section_image')->first();
         $settings['pdf1'] = MyConfig::where('group_key', 'site')->where('key', 'pdf1')->first();
         $settings['pdf2'] = MyConfig::where('group_key', 'site')->where('key', 'pdf2')->first();
+        $settings['instagram_link'] = MyConfig::where('group_key', 'site')->where('key', 'instagram_link')->first();
+        $settings['facebook_link'] = MyConfig::where('group_key', 'site')->where('key', 'facebook_link')->first();
 
         return view('admin.setting.settings', compact('settings'));
     }
@@ -89,7 +91,23 @@ class AdminSettingsController extends Controller
                 ]
             );
         }
-
+        //-----------instagram and facebook links---------------------------
+        $socialLinks = ['instagram_link', 'facebook_link'];
+        foreach ($socialLinks as $link) {
+            $social_link = $request->get($link);
+            if($social_link){
+                MyConfig::updateOrCreate(
+                    ['group_key' => 'site', 'key' => $link],
+                    [
+                        'group_key' => 'site',
+                        'key' => $link,
+                        'value1' => $social_link
+                    ]
+                );
+            }else{
+                MyConfig::where('group_key', 'site')->where('key', $link)->delete();
+            }
+        }
 
         return back();
     }

@@ -187,6 +187,19 @@
                         <button type="button" class="btn btn-sm btn-light" id="delete_facebook_link_button">Delete</button>
                     </td>
                 </tr>
+                <tr>
+                    <td class="action-td">Map</td>
+                    <td></td>
+                    <td>
+                        <label>Latitude, for example 34.1818</label>
+                        <input name="map_latitude" class="form-control" placeholder="Latitude" type="text" value="{{$settings['map']->value1 ?? ''}}">
+                        <label>Longitude, for example -118.3080</label>
+                        <input name="map_longitude" class="form-control" placeholder="Longitude" type="text" value="{{$settings['map']->value2 ?? ''}}">
+                        <label>Zoom, recommended in the range from 10 to 20</label>
+                        <input name="map_zoom" class="form-control" placeholder="Zoom" type="text" value="{{$settings['map']->value3 ?? ''}}">
+                    </td>
+                    <td></td>
+                </tr>
                 </tbody>
             </table>
             <div style="margin-top: 25px;">

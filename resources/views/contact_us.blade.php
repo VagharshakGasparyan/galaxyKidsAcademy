@@ -5,11 +5,15 @@
         <div class="left-column">
             <button type="button" class="call-now">{{__('contact-us.telephone')}}</button>
             <div class="map-box">
+{{--                <iframe width="600" height="450" loading="lazy" allowfullscreen--}}
+{{--                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=121%20E.%20Prospect%20Burbank%20Ca%2091502&zoom=13&maptype=roadmap"></iframe>--}}
                 <iframe
-                    src="https://maps.google.com/maps?q=6543%20Lankershim%20Blvd,%20North%20Hollywood,%20CA%2091606&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                    frameborder="0"
+                    width="600"
+                    height="450"
+                    loading="lazy"
                     allowfullscreen
-                ></iframe>
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q={{$map_llz->value1 ?? '34.1818'}},{{$map_llz->value2 ?? '-118.3080'}}&zoom={{$map_llz->value3 ?? '16'}}&maptype=roadmap">
+                </iframe>
             </div>
             <div class="info-box">
                 <h2>{{__('contact-us.info.title')}}</h2>

@@ -34,7 +34,8 @@ class PageController extends Controller
 
     public function contactUs(): \Illuminate\Contracts\View\View
     {
-        return view('contact_us');
+        $map_llz = MyConfig::where('group_key', 'site')->where('key', 'map')->first();
+        return view('contact_us', compact('map_llz'));
     }
 
     public function ourPrograms(): \Illuminate\Contracts\View\View

@@ -26,6 +26,7 @@ class AdminSettingsController extends Controller
         $settings['pdf2'] = MyConfig::where('group_key', 'site')->where('key', 'pdf2')->first();
         $settings['instagram_link'] = MyConfig::where('group_key', 'site')->where('key', 'instagram_link')->first();
         $settings['facebook_link'] = MyConfig::where('group_key', 'site')->where('key', 'facebook_link')->first();
+        $settings['map'] = MyConfig::where('group_key', 'site')->where('key', 'map')->first();
 
         return view('admin.setting.settings', compact('settings'));
     }
@@ -41,6 +42,9 @@ class AdminSettingsController extends Controller
             'top_section_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:15000|dimensions:min_width=32,min_height=32,max_width=3000,max_height=3000',
             'pdf1' => 'nullable|file|mimes:pdf|max:100000',
             'pdf2' => 'nullable|file|mimes:pdf|max:100000',
+            'map_latitude' => 'required|numeric',
+            'map_longitude' => 'required|numeric',
+            'map_zoom' => 'required|numeric',
         ]);
 
         $settings = ['icon', 'header_logo', 'home_top_image', 'home_middle_image', 'home_bottom_image', 'top_section_image'];
@@ -107,6 +111,22 @@ class AdminSettingsController extends Controller
             }else{
                 MyConfig::where('group_key', 'site')->where('key', $link)->delete();
             }
+        }
+        //---------map--------------------------------
+        $map_latitude = $request->get('map_latitude');
+        $map_longitude = $request->get('map_longitude');
+        $map_zoom = $request->get('map_zoom');
+        if($map_latitude && $map_longitude && $map_zoom){
+            MyConfig::updateOrCreate(
+                ['group_key' => 'site', 'key' => 'map'],
+                [
+                    'group_key' => 'site',
+                    'key' => 'map',
+                    'value1' => $map_latitude,
+                    'value2' => $map_longitude,
+                    'value3' => $map_zoom,
+                ]
+            );
         }
 
         return back();
